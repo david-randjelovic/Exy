@@ -1,0 +1,80 @@
+.container {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    font-family: Rubik;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    gap: 80px;
+}
+.heading {
+    font-weight: 300;
+    font-size: 64px;
+    text-align: center;
+}
+.sub-heading {
+    text-align: center;
+    max-width: 800px;
+}
+.image {
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: cover;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(256,256,256); /* Optional: adds a slight overlay */
+}
+
+.register-form {
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.register-form h2 {
+    margin-bottom: 1rem;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+mat-form-field {
+    width: 100% ;
+}
+
+.submit-button {
+    width: 100%;
+    background: var(--primary-color) !important;
+}
+
+.logo {
+    width: 130px;
+    margin-left: 30px;
+    margin-bottom: 25px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sign-in-link {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}

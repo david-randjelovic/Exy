@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="left">
+        <div class="heading-wrapper" @slideInFromTop>
+            <span class="heading">Welcome to Exy!</span>
+            <p class="sub-heading">Save your money and effortlessly manage your expenses with Exy. Our intuitive app helps you track spending, set savings goals, and stay on top of your budget. Take control of your financial future with Exy today!</p>
+        </div>
+        <img src="assets/register-picture.svg" alt="Image" class="image" @slideInFromLeft />
+    </div>
+    <div class="right" @slideInFromRight>
+        <form class="register-form" [formGroup]="registerForm" >
+            <div class="heading">
+                <img class="logo" src="assets/logo.png" />
+            </div>
+            <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput placeholder="Ex. Patty" formControlName="username">
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+            </mat-form-field>
+            
+            <ng-container formGroupName="passwords">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [type]="passwordHidden().password ? 'password' : 'text'" placeholder="Ex. patty123" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="onPasswordVisibilityToggle($event, 'password')" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHidden().password" class="eye-button">
+                        <mat-icon>{{passwordHidden().password ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput [type]="passwordHidden().confirmPassword ? 'password' : 'text'" placeholder="Ex. patty123" formControlName="confirmPassword">
+                    <button mat-icon-button matSuffix (click)="onPasswordVisibilityToggle($event, 'confirmPassword')" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHidden().confirmPassword" class="eye-button">
+                        <mat-icon>{{passwordHidden().confirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </ng-container>
+            
+            
+            <button mat-flat-button type="submit" class="submit-button" [class.disabled]="!registerForm.valid">Sign Up</button>
+            <div class="sign-in-link">
+                <span>Already have an account?</span><a routerLink="/auth/login"type="submit">Sign in</a>
+            </div>
+        </form>
+    </div>
+</div>

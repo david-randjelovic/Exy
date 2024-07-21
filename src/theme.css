@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: url('assets/fonts/Poppins-Bold.ttf') format('truetype');
+}
+  
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    src: url('assets/fonts/Poppins-Medium.ttf') format('truetype');
+}
+  
+:root {
+    --primary-color: #39A0FF;
+    --button-hover-color: #2e8fe6;
+    --secondary-color: #8FFF85;
+    --background-color: #f4f4f9;
+    --text-color: #333333;
+}
+  
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
