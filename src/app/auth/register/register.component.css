@@ -107,7 +107,7 @@ mat-form-field {
         height: 100vh;
     }
     .mobile-heading-wrapper {
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
     .heading {
         font-size: 30px;
@@ -120,6 +120,11 @@ mat-form-field {
     }
     .logo {
         margin-bottom: 0px;
+        margin-left: 25px;
+    }
+    mat-form-field {
+        transform: scale(0.9);
+        margin-top: -10px;
     }
 
 }
