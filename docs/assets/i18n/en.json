@@ -1,0 +1,20 @@
+{
+    "SIGN_UP_PAGE": {
+        "WELCOME_MESSAGE": "Welcome to Exy!",
+        "WELCOME_PARAGRAPH": "Save your money and effortlessly manage your expenses with Exy. Our intuitive app helps you track spending, set savings goals, and stay on top of your budget. Take control of your financial future with Exy today!",
+        "WELCOME_PARAGRAPH_PHONE": "Take control of your financial future with Exy today!",
+        "SIGN_IN_MESSAGE": "Already have an account?"
+    },
+    "SIGN_IN_PAGE": {
+        "WELCOME_BACK_MESSAGE": "Welcome Back!",
+        "SIGN_UP_MESSAGE": "Don't have an account?",
+        "SIGN_IN": "Sign in"
+    },
+    "FORM": {
+        "USERNAME": "Username",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm password",
+        "SIGN_UP": "Sign up"
+    }
+}
