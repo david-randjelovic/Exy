@@ -1,13 +1,21 @@
-import { Component, signal } from '@angular/core';
-import { MaterialModule } from '../../material.module';
+import { Component, inject, signal } from '@angular/core';
+import { PrimeNgModule } from '../../primeng.module';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../services/notification.service';
+import { emailValidator } from '../../shared/validators/auth.validators';
+import { SpinnerService } from '../../services/spinner.service';
+import { finalize } from 'rxjs';
+import { LanguageDropdownComponent } from "../../shared/components/language-dropdown/language-dropdown.component";
+import { TranslateModule } from '@ngx-translate/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, FormsModule, RouterModule],
+  imports: [PrimeNgModule, ReactiveFormsModule, FormsModule, RouterModule, LanguageDropdownComponent, TranslateModule, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   animations: [
@@ -33,10 +41,28 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class LoginComponent {
   public loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', {validators: [Validators.required]}),
+    email: new FormControl('', {validators: [Validators.required, emailValidator()]}),
     password: new FormControl('', {validators: [Validators.required, Validators.minLength(8)]})
   });
   public isPasswordHidden = signal<boolean>(true);
+  private _authService = inject(AuthService);
+  private _router = inject(Router);
+  private _notificationService = inject(NotificationService);
+  private _spinnerService = inject(SpinnerService);
+
+  public onSubmit(): void {
+    this._spinnerService.toggleSpinner();
+    this._authService.onLogin(this.loginForm).pipe(finalize(() => this._spinnerService.toggleSpinner())).subscribe({
+      next: response => {
+        localStorage.setItem('exyt', response.token);
+        this._router.navigateByUrl('dashboard');
+        this._notificationService.showSnackbar('Success', 'Login Successful!');
+      },
+      error: error => {
+        this._notificationService.showSnackbar('Error', 'Either email or password is incorrect.');
+      }
+    })
+  }
   
   public onRevealPassword(event: MouseEvent): void {
     this.isPasswordHidden.update((passwordHidden) => !passwordHidden);

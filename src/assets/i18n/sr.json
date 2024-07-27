@@ -1,0 +1,20 @@
+{
+    "SIGN_UP_PAGE": {
+        "WELCOME_MESSAGE": "Dobrodošli u Exy!",
+        "WELCOME_PARAGRAPH": "Sačuvajte svoj novac i lako upravljajte svojim troškovima uz Exy. Naša intuitivna aplikacija vam pomaže da pratite potrošnju, postavite ciljeve štednje i ostanete na vrhu svog budžeta. Preuzmite kontrolu nad svojom finansijskom budućnošću uz Exy već danas!",
+        "WELCOME_PARAGRAPH_PHONE": "Preuzmite kontrolu nad svojom finansijskom budućnošću uz Exy već danas!",
+        "SIGN_IN_MESSAGE": "Već imate nalog?"
+    },
+    "SIGN_IN_PAGE": {
+        "WELCOME_BACK_MESSAGE": "Dobrodošli nazad!",
+        "SIGN_UP_MESSAGE": "Nemate nalog?",
+        "SIGN_IN": "Prijavite se"
+    },
+    "FORM": {
+        "USERNAME": "Korisničko ime",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Lozinka",
+        "CONFIRM_PASSWORD": "Potvrdite lozinku",
+        "SIGN_UP": "Registrujte se"
+    }
+}

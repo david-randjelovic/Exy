@@ -14,6 +14,7 @@
     justify-content: center;
     color: #fff;
     gap: 80px;
+    height: 100vh;
 }
 .heading {
     font-weight: 300;
@@ -34,12 +35,16 @@
 
 .right {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background: rgba(256,256,256); /* Optional: adds a slight overlay */
 }
 
 .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding: 2rem;
     border-radius: 8px;
     width: 80%;
@@ -53,9 +58,6 @@
 .register-form label {
     display: block;
     margin-bottom: 0.5rem;
-}
-mat-form-field {
-    width: 100% ;
 }
 
 .submit-button {
@@ -75,7 +77,6 @@ mat-form-field {
     align-items: center;
 }
 .sign-in-link {
-    margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 5px;
@@ -83,7 +84,11 @@ mat-form-field {
 .mobile-heading-wrapper {
     display: none;
 }
-
+.language-dropdown-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 @media (max-width: 992px) {
     .heading {
         font-size: 50px;
@@ -99,6 +104,10 @@ mat-form-field {
 }
 
 @media(max-width: 480px) {
+    h1, p {
+        padding: 0px;
+        margin: 0px;
+    }
     .container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
@@ -109,11 +118,10 @@ mat-form-field {
     .right {
         height: 100vh;
         display: flex;
-        align-items: start;
+        align-items: center;
     }
     .mobile-heading-wrapper {
         display: block;
-        margin-bottom: 30px;
     }
     .heading {
         font-size: 30px;

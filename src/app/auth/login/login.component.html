@@ -1,36 +1,40 @@
 <div class="container">
     <div class="left" @slideInFromLeft>
-        <form class="register-form" [formGroup]="loginForm">
+        <div class="language-dropdown-wrapper">
+            <app-language-dropdown></app-language-dropdown>
+        </div>
+        <form class="register-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="heading">
                 <img class="logo" src="assets/logo.png" />
             </div>
             <div class="mobile-heading-wrapper">
-                <span class="heading">Welcome Back!</span>
-                <p class="sub-heading">Take control of your financial future with Exy today!</p>
+                <span class="heading">{{"SIGN_IN_PAGE.WELCOME_BACK_MESSAGE" | translate}}</span>
+                <p class="sub-heading">{{"SIGN_UP_PAGE.WELCOME_PARAGRAPH_PHONE" | translate}}</p>
             </div>
-            <mat-form-field class="example-full-width">
-                <mat-label>Username</mat-label>
-                <input type="text" matInput placeholder="Ex. Patty" formControlName="username">
-            </mat-form-field>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="{{'FORM.EMAIL' | translate}}" formControlName="email" />
+            </p-inputGroup>
             
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput [type]="isPasswordHidden() ? 'password' : 'text'" placeholder="Ex. patty123" formControlName="password">
-                <button mat-icon-button matSuffix (click)="onRevealPassword($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordHidden()" class="eye-button">
-                    <mat-icon>{{isPasswordHidden() ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-lock"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="{{'FORM.PASSWORD' | translate}}" type="password" formControlName="password" />
+            </p-inputGroup>
             
-            <button mat-flat-button type="submit" class="submit-button" [class.disabled]="!loginForm.valid">Sign In</button>
-            <div class="sign-in-link">
-                <span>Don't have an account?</span><a routerLink="/auth/register" type="submit">Sign up</a>
-            </div>
+            <button mat-flat-button label="{{'SIGN_IN_PAGE.SIGN_IN' | translate}}" type="submit" class="submit-button" [disabled]="!loginForm.valid" pButton></button>
         </form>
+        <div class="sign-in-link">
+            <span>{{"SIGN_IN_PAGE.SIGN_UP_MESSAGE" | translate}}</span><a routerLink="/auth/register" type="submit">{{"FORM.SIGN_UP" | translate}}</a>
+        </div>
     </div>
     <div class="right">
         <div class="heading-wrapper" @slideInFromTop>
-            <span class="heading">Welcome Back!</span>
-            <p class="sub-heading">Save your money and effortlessly manage your expenses with Exy. Our intuitive app helps you track spending, set savings goals, and stay on top of your budget. Take control of your financial future with Exy today!</p>
+            <span class="heading">{{"SIGN_IN_PAGE.WELCOME_BACK_MESSAGE" | translate}}</span>
+            <p class="sub-heading">{{"SIGN_UP_PAGE.WELCOME_PARAGRAPH" | translate}}</p>
         </div>
         <img src="assets/login-picture.svg" alt="Image" class="image" @slideInFromRight />
     </div>
