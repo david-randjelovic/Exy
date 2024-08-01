@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { PrimeNgModule } from '../../primeng.module';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -11,11 +10,15 @@ import { finalize } from 'rxjs';
 import { LanguageDropdownComponent } from "../../shared/components/language-dropdown/language-dropdown.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeNgModule, ReactiveFormsModule, FormsModule, RouterModule, LanguageDropdownComponent, TranslateModule, NgClass],
+  imports: [ReactiveFormsModule, FormsModule, RouterModule, LanguageDropdownComponent, TranslateModule, InputTextModule, ButtonModule, InputGroupModule, InputGroupAddonModule, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   animations: [
@@ -51,8 +54,7 @@ export class LoginComponent {
   private _spinnerService = inject(SpinnerService);
 
   public onSubmit(): void {
-    this._spinnerService.toggleSpinner();
-    this._authService.onLogin(this.loginForm).pipe(finalize(() => this._spinnerService.toggleSpinner())).subscribe({
+    this._authService.onLogin(this.loginForm).subscribe({
       next: response => {
         localStorage.setItem('exyt', response.token);
         this._router.navigateByUrl('dashboard');

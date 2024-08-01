@@ -1,0 +1,37 @@
+.container {
+    position: relative;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    transition: opacity 0.3s;
+    opacity: 0;
+    z-index: 0;
+}
+
+.container:hover::before {
+    opacity: 1;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+.container-active {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}

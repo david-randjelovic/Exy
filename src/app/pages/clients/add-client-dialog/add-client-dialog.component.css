@@ -1,0 +1,22 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 0rem 2rem 2rem 2rem;
+    border-radius: 5px;
+}
+.dialog-buttons {
+    display: flex;
+    justify-content: space-between;   
+}
+.logo {
+    width: 80px;
+    margin-left: 1.4rem;
+}
+.logo-container{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 2rem;
+}

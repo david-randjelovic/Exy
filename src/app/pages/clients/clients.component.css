@@ -1,0 +1,20 @@
+.table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.green {
+    color: #22c55e;
+}
+.red {
+    color: red;
+}
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.dialog-buttons {
+    display: flex;
+    justify-content: space-between;   
+}

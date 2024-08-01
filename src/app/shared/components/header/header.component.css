@@ -1,8 +1,19 @@
 .container {
-    height: 70px;
-    background-color: #fff;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
 }
-.logo {
-    width: 50px;
+.header-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-right: 10px;
+}
+.header-buttons > .pi {
+    font-size: 1.4rem;
+}
+.breadcrumb {
+    margin-left: 1.5rem;
 }

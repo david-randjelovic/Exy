@@ -1,0 +1,29 @@
+<p-table class="container" [value]=" clientService.clients()" [tableStyle]="{'max-width': '97rem'}" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+        <div class="table-heading">
+            Clients
+            <button pButton icon="pi pi-plus" (click)="showDialog()"> </button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Price</th>
+            <th>Yearly maintenance</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.company}}</td>
+            <td>{{product.price}} $</td>
+            <td>{{product.yearly_maintenance}} $</td>
+            <td>7/30/2024</td>
+            <td [ngClass]="{'green': product.status === 'Active', 'red': product.status === 'Archived'}">{{product.status}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+<exy-add-client-dialog [visible]="visible()" (closeDialog)="showDialog()" (addClient)="onAddClient($event)"></exy-add-client-dialog>

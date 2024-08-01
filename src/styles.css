@@ -6,3 +6,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
 a {color: var(--primary-color); text-decoration: none;}
 a:hover {color: var(--primary-color); text-decoration: underline;}
 .disabled {opacity: 0.5; pointer-events: none;}
+.p-breadcrumb { background-color: transparent; display: inline-block; border: none;}
+.p-menuitem-text:hover { text-decoration: none !important;}
+.p-datatable-footer {max-width: 97rem;}
+.p-datatable-header {max-width: 97rem; border-radius: 20px 20px 0px 0px;}
+.p-paginator {max-width: 97rem; border-radius: 0px 0px 20px 20px;}
+.p-datatable {margin-left: 2.5rem; margin-top: 2.8rem; border-radius: 20px;}
+.p-calendar{width: 100%;}
+.p-dropdown {width: 100%;}
+

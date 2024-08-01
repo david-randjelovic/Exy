@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { PrimeNgModule } from '../../primeng.module';
 import { SpinnerService } from '../../services/spinner.service';
 import { NgIf } from '@angular/common';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
-  selector: 'app-spinner',
+  selector: 'exy-spinner',
   standalone: true,
-  imports: [PrimeNgModule, NgIf],
+  imports: [NgIf, ProgressSpinnerModule],
   template: `
     <div class="backdrop" *ngIf="spinnerService.loadingSubject()">
     <p-progressSpinner styleClass="exy-spinner"/> 

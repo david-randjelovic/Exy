@@ -3,7 +3,6 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { finalize } from 'rxjs';
-import { PrimeNgModule } from '../../primeng.module';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../services/notification.service';
 import { SpinnerService } from '../../services/spinner.service';
@@ -11,11 +10,15 @@ import { emailValidator, equalPasswords } from '../../shared/validators/auth.val
 import { LanguageDropdownComponent } from "../../shared/components/language-dropdown/language-dropdown.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, PrimeNgModule, RouterModule, LanguageDropdownComponent, TranslateModule, NgClass],
+  imports: [ReactiveFormsModule, FormsModule, RouterModule, LanguageDropdownComponent, TranslateModule, InputTextModule, ButtonModule, InputGroupModule, InputGroupAddonModule, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   animations: [
@@ -65,10 +68,7 @@ export class RegisterComponent {
   private _spinnerService = inject(SpinnerService);
 
   public onSubmit(): void {
-    this._spinnerService.toggleSpinner();
-    this._authService.onRegister(this.registerForm).pipe(
-      finalize(() => this._spinnerService.toggleSpinner())
-    ).subscribe({
+    this._authService.onRegister(this.registerForm).subscribe({
       next: response => {
         this.registerForm.reset();
         this._router.navigateByUrl('/auth/login');

@@ -1,0 +1,61 @@
+.container {
+    display: inline-block;
+    width: 100%;
+    height: 145px;
+    max-width: 360px;
+    background-color: var(--card-background-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 20px;
+}
+.icon-box {
+    height: 64px;
+    width: 64px;
+    border-radius: 0.75rem;
+    margin: -20px 0px 0px 20px; 
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-box-blue {
+    background-color: #1E90FF;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+}
+.icon-box-pink {
+    background-color: #f472b6;
+    box-shadow: 0 0 10px rgba(244, 114, 182, 0.6);
+}
+.icon-box-green {
+    background-color: rgb(34, 197, 94);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+.icon-box-orange {
+    background-color: rgb(249, 115, 22);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
+}
+.pi {
+    color: var(--card-background-color);
+    font-size: 24px;
+}
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.value {
+    font-size: 1.5rem;
+    color: #374151;
+}
+.info-message {
+    padding: 10px;
+}
+.green {
+    color: #22c55e;
+}
+.red {
+    color: red;
+}

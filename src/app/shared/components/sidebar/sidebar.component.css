@@ -1,0 +1,23 @@
+.container {
+    margin-top: 1rem;
+    width: 100%;
+    height: 887px;
+    max-width: 288px;
+    background-color: #161e2c;
+    margin-left: 10px;
+    border-radius: 0.75rem;
+    color: #fff;
+}
+.sidebar-heading {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid #464d59;
+}
+.nav-divider {
+    display: block;
+    color: #c6c8cb;
+    font-weight: 600;
+    margin-left: 1.8rem;
+}

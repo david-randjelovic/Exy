@@ -20,6 +20,6 @@ export class LanguageDropdownComponent {
     effect(() => {
       localStorage.setItem('exyl', this.selectedLanguage().code);
       this._translate.use(this.selectedLanguage().code);
-    })
+    }, { allowSignalWrites: true })
   }
 }

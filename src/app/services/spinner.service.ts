@@ -7,7 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SpinnerService {
   public loadingSubject = signal(false);
 
-  public toggleSpinner(): void {
-    this.loadingSubject.update((oldValue) => !oldValue);
+  public showSpinner(): void {
+    this.loadingSubject.set(true);
+  }
+
+  public hideSpinner(): void {
+    this.loadingSubject.set(false);
   }
 }
