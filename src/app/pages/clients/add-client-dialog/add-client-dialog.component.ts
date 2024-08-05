@@ -3,14 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
-import { ClientService } from '../../../services/client.service';
-import { finalize } from 'rxjs/operators';
-import { SpinnerService } from '../../../services/spinner.service';
-import { NotificationService } from '../../../services/notification.service';
-import { IClient } from '../../../interfaces/client.interface';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
+import { IClient } from '../../../interfaces/client.interface';
+import { ClientService } from '../../../services/client.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'exy-add-client-dialog',
@@ -37,7 +35,6 @@ export class AddClientDialogComponent {
   })
 
   private _clientService = inject(ClientService);
-  private _spinnerService = inject(SpinnerService);
   private _notificationService = inject(NotificationService);
 
 

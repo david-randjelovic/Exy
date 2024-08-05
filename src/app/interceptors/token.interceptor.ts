@@ -38,7 +38,6 @@ export class TokenInterceptor implements HttpInterceptor {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
               this._spinnerService.hideSpinner();
-              this._notificationService.showSnackbar('Error', 'Your session has expired.');
               this._authService.onLogOut();
             }
           }

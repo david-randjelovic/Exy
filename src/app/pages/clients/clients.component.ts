@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
 })

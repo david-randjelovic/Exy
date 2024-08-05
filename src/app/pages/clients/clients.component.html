@@ -21,7 +21,7 @@
             <td>{{product.company}}</td>
             <td>{{product.price}} $</td>
             <td>{{product.yearly_maintenance}} $</td>
-            <td>7/30/2024</td>
+            <td>{{product.payment_date | date : 'mediumDate'}}</td>
             <td [ngClass]="{'green': product.status === 'Active', 'red': product.status === 'Archived'}">{{product.status}}</td>
         </tr>
     </ng-template>

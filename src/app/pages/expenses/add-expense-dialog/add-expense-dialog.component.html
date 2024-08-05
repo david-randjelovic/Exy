@@ -1,0 +1,46 @@
+<p-dialog header="Add Client" [modal]="true" [visible]="visible()" [style]="{ width: '25rem' }">
+    <ng-template pTemplate="headless">
+        <form class="dialog-container" [formGroup]="addExpenseForm" (ngSubmit)="onSubmit()">
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="logo" class="logo">
+            </div>
+            <span>Enter expense data:</span>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [options]="typeOptions()" formControlName="type"  placeholder="Select type" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-building"></i>
+                </p-inputGroupAddon>
+                <input pInputText id="client-company" autocomplete="off" placeholder="Company" formControlName="company" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-dollar"></i>
+                </p-inputGroupAddon>
+                <input pInputText id="client-price" autocomplete="off" placeholder="Cost" formControlName="cost" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-calendar-clock"></i>
+                </p-inputGroupAddon>
+                <p-calendar formControlName="payment_date" placeholder="Payment Date" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-address-book"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [options]="statusOptions()" formControlName="status"  placeholder="Select status" />
+            </p-inputGroup>
+
+
+                <div class="dialog-buttons">
+                    <p-button label="Cancel" severity="secondary" (click)="close()"/>
+                    <p-button type="submit" label="Save"/>
+                </div>
+        </form>
+    </ng-template>
+</p-dialog>
