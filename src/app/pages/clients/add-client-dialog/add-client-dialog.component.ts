@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { IClient } from '../../../interfaces/client.interface';
 import { ClientService } from '../../../services/client.service';
 import { NotificationService } from '../../../services/notification.service';
+import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardData } from '../../../models/dashboard-data.model';
 
 @Component({
   selector: 'exy-add-client-dialog',
@@ -21,7 +23,6 @@ export class AddClientDialogComponent {
   public visible = input.required<boolean>();
 
   public closeDialog = output<void>();
-  public addClient = output<IClient>();
 
   public options = signal<string[]>(['Active', 'Archived']);
 
@@ -36,15 +37,17 @@ export class AddClientDialogComponent {
 
   private _clientService = inject(ClientService);
   private _notificationService = inject(NotificationService);
+  private _dashboardService = inject(DashboardService);
 
 
   public onSubmit(): void {
     this._clientService.addClient(this.addClientForm).subscribe({
       next: response => {
-        this._notificationService.showSnackbar('Success', 'Client added successfully!');
-        this.addClient.emit(response);
-        this.addClientForm.reset();
-        this.close();
+          this._notificationService.showSnackbar('Success', 'Client added successfully!');
+          this._dashboardService.dashboardData.set(response.dashboard_data!);
+          this._clientService.clients.update((clients) => [...clients, response.client]);
+          this.addClientForm.reset();
+          this.close();
       },
       error: error => {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');

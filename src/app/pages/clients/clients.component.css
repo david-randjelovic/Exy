@@ -18,3 +18,16 @@
     display: flex;
     justify-content: space-between;   
 }
+.pi-pencil {
+    color: #000;
+    background-color: #000;
+}
+.action-icons {
+    display: flex;
+    gap: 1rem;
+    color: #3B82F6;
+}
+.action-icon:hover {
+    cursor: pointer;
+    color:#1D4ED8;
+}

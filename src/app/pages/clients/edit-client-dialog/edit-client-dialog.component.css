@@ -16,9 +16,7 @@
 }
 .logo-container{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     border-bottom: 1px solid #e5e7eb;
-    padding: 2rem;
+    padding: 0rem 2rem 2rem 2rem;
 }

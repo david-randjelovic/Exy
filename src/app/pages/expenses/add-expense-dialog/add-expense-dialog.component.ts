@@ -10,6 +10,7 @@ import { ExpenseService } from '../../../services/expense.service';
 import { NotificationService } from '../../../services/notification.service';
 import { IExpense } from '../../../interfaces/expense.interface';
 import { SpinnerService } from '../../../services/spinner.service';
+import { DashboardService } from '../../../services/dashboard.service';
 
 @Component({
   selector: 'exy-add-expense-dialog',
@@ -37,18 +38,19 @@ export class AddExpenseDialogComponent {
 
   private _expenseService = inject(ExpenseService);
   private _notificationService = inject(NotificationService);
+  private _dashboardService = inject(DashboardService);
 
 
   public onSubmit(): void {
     this._expenseService.addExpense(this.addExpenseForm).subscribe({
       next: response => {
         this._notificationService.showSnackbar('Success', 'Client added successfully!');
+        this._dashboardService.dashboardData.set(response.dashboard_data);
         this.addExpense.emit(response);
         this.addExpenseForm.reset();
         this.close();
       },
       error: error => {
-        console.log(error);
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
       }
     });

@@ -1,3 +1,5 @@
+import { DashboardData } from "../models/dashboard-data.model"
+
 export interface IClient {
     id: number,
     name: string,
@@ -8,4 +10,5 @@ export interface IClient {
     status: string,
     created_at: string,
     updated_at: string
+    dashboard_data?: DashboardData
 } 
