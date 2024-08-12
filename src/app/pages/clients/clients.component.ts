@@ -1,21 +1,25 @@
+import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { DatePipe, NgClass } from '@angular/common';
-import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
-import { TableModule } from 'primeng/table';
+import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
+import { Subject, takeUntil } from 'rxjs';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
-import { NotificationService } from '../../services/notification.service';
 import { DashboardService } from '../../services/dashboard.service';
+import { NotificationService } from '../../services/notification.service';
+import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
+import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
+import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
 import { EditClientDialogComponent } from "./edit-client-dialog/edit-client-dialog.component";
-import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule],
-  providers: [DialogService, DynamicDialogRef],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule, ConfirmDialogModule, DynamicCurrencyPipe, TruncatePipe, DecimalPipe],
+  providers: [DialogService, DynamicDialogRef, ConfirmationService],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
 })
@@ -25,6 +29,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private _dashboardService = inject(DashboardService);
   private _dialogService = inject(DialogService);
   private _dialogRef = inject(DynamicDialogRef);
+  private _confirmationService = inject(ConfirmationService);
 
   public addDialogVisible = signal<boolean>(false);
   public editDialogVisible = signal<boolean>(false);
@@ -48,11 +53,23 @@ export class ClientsComponent implements OnInit, OnDestroy {
     })
   }
 
-  public closeEditDialog(): void {
-    this.editDialogVisible.set(false);
+  public confirmDeletation(event: IClient) {
+    this._confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
+
+        accept: () => {
+          this._onRemoveClient(event.id);
+        }
+    });
   }
 
-  public onRemoveClient(id: number): void {
+  private _onRemoveClient(id: number): void {
     this.clientService.onRemoveClient(id).subscribe({
       next: response => {
         this.clientService.clients.update((clients) => clients.filter((client) => client.id !== id));
@@ -62,12 +79,6 @@ export class ClientsComponent implements OnInit, OnDestroy {
       error: error => {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
       }
-    })
-  }
-
-  private _observeDialogClosing(): void {
-    this.clientService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
-      this._dialogRef.close();
     })
   }
 
@@ -81,6 +92,12 @@ export class ClientsComponent implements OnInit, OnDestroy {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
       }
     });
+  }
+
+  private _observeDialogClosing(): void {
+    this.clientService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
+      this._dialogRef.close();
+    })
   }
 
   ngOnDestroy(): void {

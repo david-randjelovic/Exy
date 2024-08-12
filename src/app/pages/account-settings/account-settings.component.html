@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="userService.accountSettingsForm" class="account-form" (ngSubmit)="onSubmit()">
+        <div [ngStyle]="{'background-image': 'url(' + (userService.userData?.profile_picture_url ? userService.userData?.profile_picture_url : 'assets/profile-default.svg') + ')'}"  class="profile-image" (click)="onPfpClick()"></div>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-user"></i>
+            </p-inputGroupAddon>
+            <input pInputText id="user-name" autocomplete="off" placeholder="Name" formControlName="name"/>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-envelope"></i>
+            </p-inputGroupAddon>
+            <input pInputText id="user-email" autocomplete="off" placeholder="Email" formControlName="email"/>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-language"></i>
+            </p-inputGroupAddon>
+            <p-dropdown [options]="languageOptions()" id="user-preffered-language" autocomplete="off" placeholder="Preffered Language" formControlName="preferred_language"/>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-dollar"></i>
+            </p-inputGroupAddon>
+            <p-dropdown [options]="currencyOptions()" id="user-currency" autocomplete="off" placeholder="Currency" formControlName="currency"/>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-lock"></i>
+            </p-inputGroupAddon>
+            <input pInputText type="password" id="user-password" autocomplete="off" placeholder="Password" formControlName="password"/>
+        </p-inputGroup>
+        <p-button type="submit" label="Save"/>
+    </form>
+    <input type="file" style="display: none" (change)="onPfpSelected($event)" #pfpInput/>
+</div>

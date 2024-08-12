@@ -3,11 +3,12 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { LanguageDropdownComponent } from "../language-dropdown/language-dropdown.component";
 
 @Component({
   selector: 'exy-header',
   standalone: true,
-  imports: [BreadcrumbModule, IconFieldModule, InputIconModule, InputTextModule],
+  imports: [BreadcrumbModule, IconFieldModule, InputIconModule, InputTextModule, LanguageDropdownComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

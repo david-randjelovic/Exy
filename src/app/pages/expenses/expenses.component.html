@@ -16,9 +16,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
         <tr>
-            <td>{{product.type}}</td>
-            <td>{{product.company}}</td>
-            <td>{{product.cost}} $</td>
+            <td>{{product.type | truncate:30}}</td>
+            <td>{{product.cost | dynamicCurrency}}</td>
+            <td>{{product.company  | truncate:30}}</td>
             <td>{{product.payment_date | date : 'mediumDate'}}</td>
             <td [ngClass]="{'green': product.status === 'Active', 'red': product.status === 'Archived'}">{{product.status}}</td>
         </tr>

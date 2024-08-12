@@ -1,19 +1,18 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { finalize } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../services/notification.service';
 import { SpinnerService } from '../../services/spinner.service';
-import { emailValidator, equalPasswords } from '../../shared/validators/auth.validators';
 import { LanguageDropdownComponent } from "../../shared/components/language-dropdown/language-dropdown.component";
-import { TranslateModule } from '@ngx-translate/core';
-import { NgClass } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { ButtonModule } from 'primeng/button';
+import { emailValidator, equalPasswords } from '../../shared/validators/auth.validators';
 
 @Component({
   selector: 'app-register',

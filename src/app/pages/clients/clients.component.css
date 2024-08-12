@@ -9,15 +9,6 @@
 .red {
     color: red;
 }
-.dialog-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.dialog-buttons {
-    display: flex;
-    justify-content: space-between;   
-}
 .pi-pencil {
     color: #000;
     background-color: #000;

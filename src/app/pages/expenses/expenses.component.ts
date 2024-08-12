@@ -7,11 +7,13 @@ import { ExpenseService } from '../../services/expense.service';
 import { NotificationService } from '../../services/notification.service';
 import { AddClientDialogComponent } from '../clients/add-client-dialog/add-client-dialog.component';
 import { AddExpenseDialogComponent } from "./add-expense-dialog/add-expense-dialog.component";
+import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
+import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
 })

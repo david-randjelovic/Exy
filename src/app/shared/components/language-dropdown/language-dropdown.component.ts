@@ -1,11 +1,10 @@
-import { Component, effect, Signal, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-language-dropdown',
+  selector: 'exy-language-dropdown',
   standalone: true,
   imports: [DropdownModule, FormsModule, TranslateModule],
   templateUrl: './language-dropdown.component.html',

@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
+import { DynamicCurrencyPipe } from '../../pipes/currency.pipe';
 
 @Component({
   selector: 'exy-card',
   standalone: true,
-  imports: [],
+  imports: [DynamicCurrencyPipe],
   templateUrl: './exy-card.component.html',
   styleUrl: './exy-card.component.css'
 })

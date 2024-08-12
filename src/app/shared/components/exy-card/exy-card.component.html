@@ -6,9 +6,11 @@
         <span>{{cardDescription()}}</span>
         <span class="value"  [style.color]="cardValue() < 0 ? 'red' : '#374151'">
             @if (cardFinance()) {
-                <span>$</span>
+                {{cardValue() | dynamicCurrency}}
+            } @else {
+                {{cardValue()}}
             }
-            {{cardValue()}}</span>
+        </span>
     </div>
     <div class="info-message">
         <span><span [style.color]="cardPercentage() > 0 ? '#22c55e' : 'red'">{{cardPercentage()}}%</span> than last month</span>

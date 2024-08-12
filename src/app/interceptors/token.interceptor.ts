@@ -24,7 +24,6 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
     }
-
     this._spinnerService.showSpinner();
     
     return next.handle(request).pipe(

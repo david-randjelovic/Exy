@@ -11,11 +11,12 @@ import { ClientService } from '../../../services/client.service';
 import { NotificationService } from '../../../services/notification.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { DashboardData } from '../../../models/dashboard-data.model';
+import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 
 @Component({
   selector: 'exy-add-client-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective],
   templateUrl: './add-client-dialog.component.html',
   styleUrl: './add-client-dialog.component.css'
 })

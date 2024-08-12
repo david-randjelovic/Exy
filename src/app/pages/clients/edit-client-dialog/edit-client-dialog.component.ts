@@ -10,11 +10,12 @@ import { ClientService } from '../../../services/client.service';
 import { NotificationService } from '../../../services/notification.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 
 @Component({
   selector: 'exy-edit-client-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CalendarModule, ReactiveFormsModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective],
   templateUrl: './edit-client-dialog.component.html',
   styleUrl: './edit-client-dialog.component.css'
 })
