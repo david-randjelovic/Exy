@@ -22,7 +22,7 @@
             <td>{{client.company | truncate:30}}</td>
             <td>{{client.price | dynamicCurrency}}</td>
             <td>{{client.yearly_maintenance | dynamicCurrency}}</td>
-            <td>{{client.payment_date | date : 'mediumDate'}}</td>
+            <td>{{client.payment_date | date: 'mediumDate'}}</td>
             <td [ngClass]="{'green': client.status === 'Active', 'red': client.status === 'Archived'}">{{client.status}}</td>
             <td>
                 <div class="action-icons">

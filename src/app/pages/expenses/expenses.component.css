@@ -18,3 +18,12 @@
     display: flex;
     justify-content: space-between;   
 }
+.action-icons {
+    display: flex;
+    gap: 1rem;
+    color: #3B82F6;
+}
+.action-icon:hover {
+    cursor: pointer;
+    color:#1D4ED8;
+}

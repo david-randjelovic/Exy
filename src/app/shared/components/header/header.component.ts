@@ -4,11 +4,12 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { LanguageDropdownComponent } from "../language-dropdown/language-dropdown.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'exy-header',
   standalone: true,
-  imports: [BreadcrumbModule, IconFieldModule, InputIconModule, InputTextModule, LanguageDropdownComponent],
+  imports: [BreadcrumbModule, IconFieldModule, InputIconModule, InputTextModule, LanguageDropdownComponent, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

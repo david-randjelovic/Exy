@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 export class CurrencyService {
   private currencySymbolSubject = new BehaviorSubject<string>('$');
 
-  setCurrencySymbol(symbol: string) {
-    this.currencySymbolSubject.next(symbol);
+  public getCurrencySymbol(): string {
+    return this.currencySymbolSubject.value;
   }
 
-  getCurrencySymbol(): string {
-    return this.currencySymbolSubject.value;
+  public setCurrencySymbol(response: IUser): void {
+    this.currencySymbolSubject.next(response.currency.slice(-1));
   }
 }

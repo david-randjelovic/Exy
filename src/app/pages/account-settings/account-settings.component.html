@@ -31,7 +31,7 @@
             </p-inputGroupAddon>
             <input pInputText type="password" id="user-password" autocomplete="off" placeholder="Password" formControlName="password"/>
         </p-inputGroup>
-        <p-button type="submit" label="Save"/>
+        <p-button type="submit" label="Save"  [disabled]="!userService.accountSettingsForm.valid"/>
     </form>
     <input type="file" style="display: none" (change)="onPfpSelected($event)" #pfpInput/>
 </div>

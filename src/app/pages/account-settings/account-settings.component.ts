@@ -11,6 +11,7 @@ import { NotificationService } from '../../services/notification.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { Subject, takeUntil } from 'rxjs';
 import { CurrencyService } from '../../services/currency.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -23,8 +24,9 @@ export class AccountSettingsComponent implements OnDestroy {
   @ViewChild('pfpInput') pfpInput!: ElementRef;
 
   public userService = inject(UserService);
-  private _notificatioNService = inject(NotificationService);
+  private _notificationService = inject(NotificationService);
   private _currencyService = inject(CurrencyService);
+  private _languageService = inject(LanguageService);
 
   public inputedPfP?: HTMLInputElement;
   public languageOptions = signal<string[]>(['English', 'Serbian']);
@@ -43,53 +45,42 @@ export class AccountSettingsComponent implements OnDestroy {
     }
   }
 
-  public uploadProfilePicture(file: File): void {
+  public onSubmit(): void {
+    const changedInputs = this.userService.checkChangedInputs();
+  
+    if (this.inputedPfP?.files) {
+      this._uploadProfilePicture(this.inputedPfP.files[0]);
+    }
+  
+    if (Object.keys(changedInputs).length > 0) {
+      this._uploadUserData(changedInputs);
+    } else if (this.inputedPfP?.files) {
+      this._notificationService.showSnackbar('Success', 'Profile picture updated successfully');
+      this.inputedPfP = undefined;
+    }
+  }
+
+  private _uploadProfilePicture(file: File): void {
     const formData = new FormData();
     formData.append('profile_picture', file, file.name);
     this.userService.profilePictureCall(formData).subscribe();
   }
 
-  public onSubmit(): void {
-    const changedInputs = this._checkChangedInputs();
-  
-    if (this.inputedPfP?.files) {
-      this.uploadProfilePicture(this.inputedPfP.files[0]);
-    }
-  
-    if (Object.keys(changedInputs).length > 0) {
-      this.userService.updateUserData(changedInputs).subscribe({
-        next: response => {
-          this.userService.accountSettingsForm.get('password')?.setValue('');
-          this._currencyService.setCurrencySymbol(response.currency.slice(-1));
-        },
-        error: error => {
-          this._notificatioNService.showSnackbar('Error', 'Oops something went wrong while saving the data!');
-        },
-        complete: () => {
-          this.userService.accountSettingsForm.markAsPristine();
-          this._notificatioNService.showSnackbar('Success', 'Data saved successfully');
-        }
-      });
-    } else if (this.inputedPfP?.files) {
-      this._notificatioNService.showSnackbar('Success', 'Profile picture updated successfully');
-      this.inputedPfP = undefined;
-    }
-  }
-
-  private _checkChangedInputs(): Partial<IUser> {
-    const updatedData: Partial<IUser> = {};
-
-    for (const control in this.userService.accountSettingsForm.controls) {
-      if (this.userService.accountSettingsForm.controls.hasOwnProperty(control)) {
-        const formControl = this.userService.accountSettingsForm.get(control);
-
-        if (formControl && formControl.dirty) {
-          updatedData[control as keyof IUser] = formControl.value;
-        }
+  private _uploadUserData(changedInputs: Partial<IUser>): void {
+    this.userService.updateUserData(changedInputs).subscribe({
+      next: response => {
+        this.userService.accountSettingsForm.get('password')?.setValue('');
+        this._currencyService.setCurrencySymbol(response);
+        this._languageService.setPreferredLanguage(response);
+      },
+      error: error => {
+        this._notificationService.showSnackbar('Error', 'Oops something went wrong while saving the data!');
+      },
+      complete: () => {
+        this.userService.accountSettingsForm.markAsPristine();
+        this._notificationService.showSnackbar('Success', 'Data saved successfully');
       }
-    }
-
-    return updatedData;
+    });
   }
 
   ngOnDestroy(): void {

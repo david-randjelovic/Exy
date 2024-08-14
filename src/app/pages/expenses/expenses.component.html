@@ -12,16 +12,24 @@
             <th>Company</th>
             <th>Payment Date</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-expense>
         <tr>
-            <td>{{product.type | truncate:30}}</td>
-            <td>{{product.cost | dynamicCurrency}}</td>
-            <td>{{product.company  | truncate:30}}</td>
-            <td>{{product.payment_date | date : 'mediumDate'}}</td>
-            <td [ngClass]="{'green': product.status === 'Active', 'red': product.status === 'Archived'}">{{product.status}}</td>
+            <td>{{expense.type | truncate:30}}</td>
+            <td>{{expense.cost | dynamicCurrency}}</td>
+            <td>{{expense.company  | truncate:30}}</td>
+            <td>{{expense.payment_date | date : 'mediumDate'}}</td>
+            <td [ngClass]="{'green': expense.status === 'Active', 'red': expense.status === 'Archived'}">{{expense.status}}</td>
+            <td>
+                <div class="action-icons">
+                    <!-- <i class="pi pi-pen-to-square action-icon" (click)="showEditDialog(client)"></i> -->
+                    <i class="pi pi-trash action-icon" (click)="confirmDeletation(expense)"></i>
+                </div>
+            </td>
         </tr>
     </ng-template>
 </p-table>
 <exy-add-expense-dialog [visible]="visible()" (closeDialog)="showDialog()" (addExpense)="onAddExpense($event)"></exy-add-expense-dialog>
+<p-confirmDialog />

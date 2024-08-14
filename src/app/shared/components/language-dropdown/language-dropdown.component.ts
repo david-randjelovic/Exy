@@ -1,7 +1,8 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'exy-language-dropdown',
@@ -11,14 +12,14 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './language-dropdown.component.css'
 })
 export class LanguageDropdownComponent {
+  public languageService = inject(LanguageService);
   public languages: {name: string, code: string}[] = [{name: 'EN', code: 'en'}, {name: 'SR', code: 'sr'}];
-  public selectedLanguage = signal({name: 'EN', code: 'en'});
 
   constructor(private _translate: TranslateService) {
-    this.selectedLanguage.set({name: localStorage.getItem('exyl')?.toLocaleUpperCase() ?? 'en', code: localStorage.getItem('exyl') ?? 'en'})
+    this.languageService.selectedLanguage.set({name: localStorage.getItem('exyl')?.toLocaleUpperCase() ?? 'en', code: localStorage.getItem('exyl') ?? 'en'})
     effect(() => {
-      localStorage.setItem('exyl', this.selectedLanguage().code);
-      this._translate.use(this.selectedLanguage().code);
+      localStorage.setItem('exyl', this.languageService.selectedLanguage().code);
+      this._translate.use(this.languageService.selectedLanguage().code);
     }, { allowSignalWrites: true })
   }
 }

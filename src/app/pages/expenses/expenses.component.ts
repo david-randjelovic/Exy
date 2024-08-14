@@ -9,11 +9,16 @@ import { AddClientDialogComponent } from '../clients/add-client-dialog/add-clien
 import { AddExpenseDialogComponent } from "./add-expense-dialog/add-expense-dialog.component";
 import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
+import { IClient } from '../../interfaces/client.interface';
+import { ConfirmationService } from 'primeng/api';
+import { DashboardService } from '../../services/dashboard.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, ConfirmDialogModule],
+  providers: [ConfirmationService],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
 })
@@ -21,6 +26,8 @@ export class ExpensesComponent implements OnInit {
   public visible = signal<boolean>(false);
   public expenseService = inject(ExpenseService);
   private _notificationService = inject(NotificationService);
+  private _confirmationService = inject(ConfirmationService);
+  private _dashboardService = inject(DashboardService);
 
   ngOnInit(): void {
     this._onGetClients(); 
@@ -45,5 +52,36 @@ export class ExpensesComponent implements OnInit {
       }
     });
   }
+
+  public confirmDeletation(event: IClient) {
+    console.log('test');
+    this._confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
+
+        accept: () => {
+          this._onRemoveExpense(event.id);
+        }
+    });
+  }
+
+  private _onRemoveExpense(id: number): void {
+    this.expenseService.onRemoveExpense(id).subscribe({
+      next: response => {
+        this.expenseService.expenses.update((expenses) => expenses.filter((expense: IExpense) => expense.id !== id));
+        this._dashboardService.dashboardData.set(response);
+        this._notificationService.showSnackbar('Success', 'Client removed successfully!');
+      },
+      error: error => {
+        this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
+      }
+    })
+  }
+
 
 }
