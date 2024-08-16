@@ -1,8 +1,8 @@
 {
     "SIGN_UP_PAGE": {
         "WELCOME_MESSAGE": "Dobrodošli u Exy!",
-        "WELCOME_PARAGRAPH": "Sačuvajte svoj novac i lako upravljajte svojim troškovima uz Exy. Naša intuitivna aplikacija vam pomaže da pratite potrošnju, postavite ciljeve štednje i ostanete na vrhu svog budžeta. Preuzmite kontrolu nad svojom finansijskom budućnošću uz Exy već danas!",
-        "WELCOME_PARAGRAPH_PHONE": "Preuzmite kontrolu nad svojom finansijskom budućnošću uz Exy već danas!",
+        "WELCOME_PARAGRAPH": "Sačuvajte svoj novac i lako upravljajte svojim troškovima uz Exy. Naša intuitivna aplikacija pomaže vam da pratite troškove, postavljate ciljeve štednje i ostanete na vrhu svog budžeta. Preuzmite kontrolu nad svojom finansijskom budućnošću sa Exy već danas!",
+        "WELCOME_PARAGRAPH_PHONE": "Preuzmite kontrolu nad svojom finansijskom budućnošću sa Exy već danas!",
         "SIGN_IN_MESSAGE": "Već imate nalog?"
     },
     "SIGN_IN_PAGE": {
@@ -15,6 +15,70 @@
         "EMAIL": "E-mail",
         "PASSWORD": "Lozinka",
         "CONFIRM_PASSWORD": "Potvrdite lozinku",
-        "SIGN_UP": "Registrujte se"
+        "SIGN_UP": "Registrujte se",
+        "SIGN_OUT": "Odjavite se"
+    },
+    "DASHBOARD": {
+        "DASHBOARD": "Kontrolna Tabla",
+        "TOTAL_PROFIT": "Ukupan profit",
+        "TOTAL_CLIENTS": "Ukupan broj klijenata",
+        "PROFIT_THIS_YEAR": "Profit (ove godine)",
+        "NEW_CLIENTS": "Novi klijenti (ove godine)",
+        "AUTH": "Autentifikacija"
+    },
+    "CLIENTS": {
+        "CLIENTS": "Klijenti",
+        "NAME": "Ime",
+        "COMPANY": "Kompanija",
+        "PRICE": "Cena",
+        "YEARLY_MAINTENANCE": "Godišnje održavanje",
+        "PAYMENT_DATE": "Datum plaćanja",
+        "STATUS": "Status",
+        "ACTIONS": "Akcije",
+        "ADD_CLIENT": "Dodaj klijenta",
+        "EDIT_CLIENT": "Izmeni klijenta",
+        "CLIENTS_DATA": "Podaci o klijentu:",
+        "ENTER_CLIENTS_DATA": "Unesite podatke o klijentu:"
+    },
+    "EXPENSES": {
+        "EXPENSES": "Troškovi",
+        "TYPE": "Tip",
+        "COST": "Cena",
+        "COMPANY": "Kompanija",
+        "PAYMENT_DATE": "Datum plaćanja",
+        "STATUS": "Status",
+        "EXPENSE_DATA": "Podaci o troškovima:",
+        "ENTER_EXPENSE_DATA": "Unesite podatke o troškovima:"
+    },
+    "ACTIONS": {
+        "ACTIONS": "Akcije",
+        "CANCEL": "Otkaži",
+        "SAVE": "Sačuvaj",
+        "YES": "Da",
+        "NO": "Ne"
+    },
+    "DELETE_CONFIMATION": {
+        "DELETE_CONFIRMATION": "Potvrda brisanja",
+        "DELETE_RECORD": "Da li želite da obrišete ovaj zapis?"
+    },
+    "ACCOUNT_SETTINGS": {
+        "ACCOUNT_SETTINGS": "Podešavanja naloga",
+        "NAME": "Ime",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Lozinka",
+        "PREFERRED_LANGUAGE": "Preferirani jezik",
+        "CURRENCY": "Valuta",
+        "ENGLISH": "Engleski",
+        "SERBIAN": "Srpski",
+        "DOLLAR": "Dolar - $",
+        "EURO": "Evro - €"
+    },
+    "STATUS": {
+        "ARCHIVED": "Arhivirano",
+        "ACTIVE": "Aktivno"
+    },
+    "SUBSCRIPTION": {
+        "ONE_TIME": "Jednokratno",
+        "SUBSCRIPTION": "Pretplata"
     }
 }

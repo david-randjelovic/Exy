@@ -5,33 +5,47 @@
             <p-inputGroupAddon>
                 <i class="pi pi-user"></i>
             </p-inputGroupAddon>
-            <input pInputText id="user-name" autocomplete="off" placeholder="Name" formControlName="name"/>
+            <input pInputText id="user-name" autocomplete="off" placeholder="{{'ACCOUNT_SETTINGS.NAME' | translate}}" formControlName="name"/>
         </p-inputGroup>
         <p-inputGroup>
             <p-inputGroupAddon>
                 <i class="pi pi-envelope"></i>
             </p-inputGroupAddon>
-            <input pInputText id="user-email" autocomplete="off" placeholder="Email" formControlName="email"/>
+            <input pInputText id="user-email" autocomplete="off" placeholder="{{'ACCOUNT_SETTINGS.EMAIL' | translate}}" formControlName="email"/>
         </p-inputGroup>
         <p-inputGroup>
             <p-inputGroupAddon>
                 <i class="pi pi-language"></i>
             </p-inputGroupAddon>
-            <p-dropdown [options]="languageOptions()" id="user-preffered-language" autocomplete="off" placeholder="Preffered Language" formControlName="preferred_language"/>
+            <p-dropdown [options]="languageOptions()" id="user-preffered-language" autocomplete="off" placeholder="{{'ACCOUNT_SETTINGS.PREFERRED_LANGUAGE' | translate}}" formControlName="preferred_language">
+                <ng-template pTemplate="item" let-item>
+                    {{item.label | translate}}
+                    </ng-template>
+                    <ng-template let-selectedItem pTemplate="selectedItem">
+                    {{selectedItem.label | translate}}
+                </ng-template>
+            </p-dropdown>
         </p-inputGroup>
         <p-inputGroup>
             <p-inputGroupAddon>
                 <i class="pi pi-dollar"></i>
             </p-inputGroupAddon>
-            <p-dropdown [options]="currencyOptions()" id="user-currency" autocomplete="off" placeholder="Currency" formControlName="currency"/>
+            <p-dropdown [options]="currencyOptions()" id="user-currency" autocomplete="off" placeholder="{{'ACCOUNT_SETTINGS.CURRENCY' | translate}}" formControlName="currency">
+                <ng-template pTemplate="item" let-item>
+                    {{item.label | translate}}
+                    </ng-template>
+                    <ng-template let-selectedItem pTemplate="selectedItem">
+                    {{selectedItem.label | translate}}
+                </ng-template>
+            </p-dropdown>
         </p-inputGroup>
         <p-inputGroup>
             <p-inputGroupAddon>
                 <i class="pi pi-lock"></i>
             </p-inputGroupAddon>
-            <input pInputText type="password" id="user-password" autocomplete="off" placeholder="Password" formControlName="password"/>
+            <input pInputText type="password" id="user-password" autocomplete="off" placeholder="{{'ACCOUNT_SETTINGS.PASSWORD' | translate}}" formControlName="password"/>
         </p-inputGroup>
-        <p-button type="submit" label="Save"  [disabled]="!userService.accountSettingsForm.valid"/>
+        <p-button type="submit" label="{{'ACTIONS.SAVE' | translate}}"  [disabled]="!userService.accountSettingsForm.valid"/>
     </form>
     <input type="file" style="display: none" (change)="onPfpSelected($event)" #pfpInput/>
 </div>

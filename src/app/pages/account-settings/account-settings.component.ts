@@ -12,11 +12,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Subject, takeUntil } from 'rxjs';
 import { CurrencyService } from '../../services/currency.service';
 import { LanguageService } from '../../services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, InputGroupModule, InputGroupAddonModule, ButtonModule, NgStyle, DropdownModule],
+  imports: [ReactiveFormsModule, InputTextModule, InputGroupModule, InputGroupAddonModule, ButtonModule, NgStyle, DropdownModule, TranslateModule],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.css'
 })
@@ -29,8 +30,8 @@ export class AccountSettingsComponent implements OnDestroy {
   private _languageService = inject(LanguageService);
 
   public inputedPfP?: HTMLInputElement;
-  public languageOptions = signal<string[]>(['English', 'Serbian']);
-  public currencyOptions = signal<string[]>(['Dollar - $', 'Euro - €']);
+  public languageOptions = signal<{label: string, value: string}[]>([{label: 'ACCOUNT_SETTINGS.ENGLISH', value: 'English'}, {label: 'ACCOUNT_SETTINGS.SERBIAN', value: 'Serbian'}]);
+  public currencyOptions = signal<{label: string, value: string}[]>([{label: 'ACCOUNT_SETTINGS.DOLLAR', value: 'Dollar - $'}, {label: 'ACCOUNT_SETTINGS.EURO', value: 'Euro - €'}]);
   public onDestroy$: Subject<void> = new Subject();
 
 

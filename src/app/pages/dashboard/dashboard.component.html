@@ -1,7 +1,7 @@
 <div class="container">
-    <exy-card [cardIcon]="'money-bill'" [cardDescription]="'Total profit'" [cardValue]="dashboardService.dashboardData()?.total_profit ?? 0" [cardPercentage]="55" [cardColor]="'blue'" [cardFinance]="true"></exy-card>
-    <exy-card [cardIcon]="'user'" [cardDescription]="'Total Clients'" [cardValue]="dashboardService.dashboardData()?.total_clients ?? 0" [cardPercentage]="55" [cardColor]="'pink'" [cardFinance]="false"></exy-card>
-    <exy-card [cardIcon]="'chart-line'" [cardDescription]="'Profit (This year)'" [cardValue]="dashboardService.dashboardData()?.yearly_profit ?? 0" [cardPercentage]="55" [cardColor]="'orange'" [cardFinance]="true"></exy-card>
-    <exy-card [cardIcon]="'user-plus'" [cardDescription]="'New Clients (This year)'" [cardValue]="dashboardService.dashboardData()?.yearly_clients ?? 0" [cardPercentage]="55" [cardColor]="'green'" [cardFinance]="false"></exy-card>
+    <exy-card [cardIcon]="'money-bill'" [cardDescription]="translate.instant('DASHBOARD.TOTAL_PROFIT')" [cardValue]="dashboardService.dashboardData()?.total_profit ?? 0" [cardPercentage]="55" [cardColor]="'blue'" [cardFinance]="true"></exy-card>
+    <exy-card [cardIcon]="'user'" [cardDescription]="translate.instant('DASHBOARD.TOTAL_CLIENTS')" [cardValue]="dashboardService.dashboardData()?.total_clients ?? 0" [cardPercentage]="55" [cardColor]="'pink'" [cardFinance]="false"></exy-card>
+    <exy-card [cardIcon]="'chart-line'" [cardDescription]="translate.instant('DASHBOARD.PROFIT_THIS_YEAR')" [cardValue]="dashboardService.dashboardData()?.yearly_profit ?? 0" [cardPercentage]="55" [cardColor]="'orange'" [cardFinance]="true"></exy-card>
+    <exy-card [cardIcon]="'user-plus'" [cardDescription]="translate.instant('DASHBOARD.NEW_CLIENTS')" [cardValue]="dashboardService.dashboardData()?.yearly_clients ?? 0" [cardPercentage]="55" [cardColor]="'green'" [cardFinance]="false"></exy-card>
 </div>
 

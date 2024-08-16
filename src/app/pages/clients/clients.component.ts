@@ -14,11 +14,12 @@ import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
 import { EditClientDialogComponent } from "./edit-client-dialog/edit-client-dialog.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule, ConfirmDialogModule, DynamicCurrencyPipe, TruncatePipe, DecimalPipe],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule, ConfirmDialogModule, DynamicCurrencyPipe, TruncatePipe, DecimalPipe, TranslateModule],
   providers: [DialogService, DynamicDialogRef, ConfirmationService],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
@@ -30,6 +31,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private _dialogService = inject(DialogService);
   private _dialogRef = inject(DynamicDialogRef);
   private _confirmationService = inject(ConfirmationService);
+
+  public translate = inject(TranslateService);
 
   public addDialogVisible = signal<boolean>(false);
   public editDialogVisible = signal<boolean>(false);

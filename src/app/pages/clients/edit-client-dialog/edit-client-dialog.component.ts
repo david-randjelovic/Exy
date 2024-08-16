@@ -11,18 +11,19 @@ import { NotificationService } from '../../../services/notification.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'exy-edit-client-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective],
+  imports: [CalendarModule, ReactiveFormsModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective, TranslateModule],
   templateUrl: './edit-client-dialog.component.html',
   styleUrl: './edit-client-dialog.component.css'
 })
 export class EditClientDialogComponent implements OnInit {
   public dialogConfig = inject(DynamicDialogConfig);
 
-  public options = signal<string[]>(['Active', 'Archived']);
+  public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
 
   public editClientForm: FormGroup = new FormGroup({
     name: new FormControl(''),

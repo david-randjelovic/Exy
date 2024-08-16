@@ -11,22 +11,27 @@ import { NotificationService } from '../../../services/notification.service';
 import { IExpense } from '../../../interfaces/expense.interface';
 import { SpinnerService } from '../../../services/spinner.service';
 import { DashboardService } from '../../../services/dashboard.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'exy-add-expense-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
   templateUrl: './add-expense-dialog.component.html',
   styleUrl: './add-expense-dialog.component.css'
 })
 export class AddExpenseDialogComponent {
+  private _expenseService = inject(ExpenseService);
+  private _notificationService = inject(NotificationService);
+  private _dashboardService = inject(DashboardService);
+  
   public visible = input.required<boolean>();
 
   public closeDialog = output<void>();
   public addExpense = output<IExpense>();
 
-  public statusOptions = signal<string[]>(['Active', 'Archived']);
-  public typeOptions = signal<string[]>(['One time', 'Subscription']);
+  public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
+  public typeOptions = signal<{label: string, value: string}[]>([{label: 'SUBSCRIPTION.ONE_TIME', value: 'One time'} , {label: 'SUBSCRIPTION.SUBSCRIPTION', value: 'Subscription'}]);
 
   public addExpenseForm: FormGroup = new FormGroup({
     type: new FormControl(''),
@@ -35,11 +40,6 @@ export class AddExpenseDialogComponent {
     payment_date: new FormControl(''),
     status: new FormControl(''),
   })
-
-  private _expenseService = inject(ExpenseService);
-  private _notificationService = inject(NotificationService);
-  private _dashboardService = inject(DashboardService);
-
 
   public onSubmit(): void {
     this._expenseService.addExpense(this.addExpenseForm).subscribe({

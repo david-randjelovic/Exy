@@ -1,19 +1,19 @@
 <p-table class="container" [value]=" clientService.clients()" dataKey="id" [tableStyle]="{'max-width': '97rem'}" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
         <div class="table-heading">
-            Clients
+            {{"CLIENTS.CLIENTS" | translate}}
             <button pButton icon="pi pi-plus" (click)="showAddDialog()"> </button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Name</th>
-            <th>Company</th>
-            <th>Price</th>
-            <th>Yearly maintenance</th>
-            <th>Payment Date</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{{"CLIENTS.NAME" | translate}}</th>
+            <th>{{"CLIENTS.COMPANY" | translate}}</th>
+            <th>{{"CLIENTS.PRICE" | translate}}</th>
+            <th>{{"CLIENTS.YEARLY_MAINTENANCE" | translate}}</th>
+            <th>{{"CLIENTS.PAYMENT_DATE" | translate}}</th>
+            <th>{{"CLIENTS.STATUS" | translate}}</th>
+            <th>{{"CLIENTS.ACTIONS" | translate}}</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>
@@ -23,7 +23,7 @@
             <td>{{client.price | dynamicCurrency}}</td>
             <td>{{client.yearly_maintenance | dynamicCurrency}}</td>
             <td>{{client.payment_date | date: 'mediumDate'}}</td>
-            <td [ngClass]="{'green': client.status === 'Active', 'red': client.status === 'Archived'}">{{client.status}}</td>
+            <td [ngClass]="{'green': client.status === 'Active', 'red': client.status === 'Archived'}">{{translate.instant('STATUS.' + client.status.toUpperCase())}}</td>
             <td>
                 <div class="action-icons">
                     <i class="pi pi-pen-to-square action-icon" (click)="showEditDialog(client)"></i>

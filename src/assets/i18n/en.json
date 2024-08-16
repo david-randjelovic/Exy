@@ -15,6 +15,70 @@
         "EMAIL": "E-mail",
         "PASSWORD": "Password",
         "CONFIRM_PASSWORD": "Confirm password",
-        "SIGN_UP": "Sign up"
+        "SIGN_UP": "Sign up",
+        "SIGN_OUT": "Sign Out"
+    },
+    "DASHBOARD": {
+        "DASHBOARD": "Dashboard",
+        "TOTAL_PROFIT": "Total profit",
+        "TOTAL_CLIENTS": "Total Clients",
+        "PROFIT_THIS_YEAR": "Profit (This year)",
+        "NEW_CLIENTS": "New Clients(This year)",
+        "AUTH": "Auth"
+    },
+    "CLIENTS": {
+        "CLIENTS": "Clients",
+        "NAME": "Name",
+        "COMPANY": "Company",
+        "PRICE": "Price",
+        "YEARLY_MAINTENANCE": "Yearly maintenance",
+        "PAYMENT_DATE": "Payment Date",
+        "STATUS": "Status",
+        "ACTIONS": "Actions",
+        "ADD_CLIENT": "Add Client",
+        "EDIT_CLIENT": "Edit Client",
+        "CLIENTS_DATA": "Client data:",
+        "ENTER_CLIENTS_DATA": "Enter Client data:"
+    },
+    "EXPENSES": {
+        "EXPENSES": "Expenses",
+        "TYPE": "Type",
+        "COST": "Cost",
+        "COMPANY": "Company",
+        "PAYMENT_DATE": "Payment Date",
+        "STATUS": "Status",
+        "EXPENSE_DATA": "Expense data:",
+        "ENTER_EXPENSE_DATA": "Enter Expense data:"
+    },
+    "ACTIONS": {
+        "ACTIONS": "Actions",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "YES": "Yes",
+        "NO": "No"
+    },
+    "DELETE_CONFIMATION": {
+        "DELETE_CONFIRMATION": "Delete Confirmation",
+        "DELETE_RECORD": "Do you want to delete this record?"
+    },
+    "ACCOUNT_SETTINGS": {
+        "ACCOUNT_SETTINGS": "Account Settings",
+        "NAME": "Name",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Password",
+        "PREFERRED_LANGUAGE": "Preferred Language",
+        "CURRENCY": "Currency",
+        "ENGLISH": "English",
+        "SERBIAN": "Serbian",
+        "DOLLAR": "Dollar - $",
+        "EURO": "Euro - €"
+    },
+    "STATUS": {
+        "ARCHIVED": "Archived",
+        "ACTIVE": "Active"
+    },
+    "SUBSCRIPTION": {
+        "ONE_TIME": "One Time",
+        "SUBSCRIPTION": "Subscription"
     }
 }

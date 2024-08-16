@@ -1,18 +1,18 @@
 <p-table class="container" [value]="expenseService.expenses()" [tableStyle]="{'max-width': '97rem'}" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
         <div class="table-heading">
-            Expenses
+            {{'EXPENSES.EXPENSES' | translate}}
             <button pButton icon="pi pi-plus" (click)="showDialog()"> </button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Type</th>
-            <th>Cost</th>
-            <th>Company</th>
-            <th>Payment Date</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{{'EXPENSES.TYPE' | translate}}</th>
+            <th>{{'EXPENSES.COST' | translate}}</th>
+            <th>{{'EXPENSES.COMPANY' | translate}}</th>
+            <th>{{'EXPENSES.PAYMENT_DATE' | translate}}</th>
+            <th>{{'EXPENSES.STATUS' | translate}}</th>
+            <th>{{'ACTIONS.ACTIONS' | translate}}</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-expense>
@@ -21,7 +21,7 @@
             <td>{{expense.cost | dynamicCurrency}}</td>
             <td>{{expense.company  | truncate:30}}</td>
             <td>{{expense.payment_date | date : 'mediumDate'}}</td>
-            <td [ngClass]="{'green': expense.status === 'Active', 'red': expense.status === 'Archived'}">{{expense.status}}</td>
+            <td [ngClass]="{'green': expense.status === 'Active', 'red': expense.status === 'Archived'}">{{translate.instant('STATUS.' + expense.status.toUpperCase())}}</td>
             <td>
                 <div class="action-icons">
                     <!-- <i class="pi pi-pen-to-square action-icon" (click)="showEditDialog(client)"></i> -->

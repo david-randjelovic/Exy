@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ExyCardComponent } from "../../shared/components/exy-card/exy-card.component";
 import { DashboardService } from '../../services/dashboard.service';
 import { NotificationService } from '../../services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 export class DashboardComponent implements OnInit {
   public dashboardService = inject(DashboardService);
   private _notificationService = inject(NotificationService);
+  public translate = inject(TranslateService);
 
   ngOnInit(): void {
     this._getDashboardData();

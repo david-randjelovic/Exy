@@ -13,11 +13,12 @@ import { IClient } from '../../interfaces/client.interface';
 import { ConfirmationService } from 'primeng/api';
 import { DashboardService } from '../../services/dashboard.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, ConfirmDialogModule],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, ConfirmDialogModule, TranslateModule],
   providers: [ConfirmationService],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
@@ -25,6 +26,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 export class ExpensesComponent implements OnInit {
   public visible = signal<boolean>(false);
   public expenseService = inject(ExpenseService);
+  public translate = inject(TranslateService);
   private _notificationService = inject(NotificationService);
   private _confirmationService = inject(ConfirmationService);
   private _dashboardService = inject(DashboardService);
@@ -56,11 +58,13 @@ export class ExpensesComponent implements OnInit {
   public confirmDeletation(event: IClient) {
     console.log('test');
     this._confirmationService.confirm({
-        message: 'Do you want to delete this record?',
-        header: 'Delete Confirmation',
+        message: this.translate.instant('DELETE_CONFIMATION.DELETE_RECORD'),
+        header: this.translate.instant('DELETE_CONFIMATION.DELETE_CONFIRMATION'),
         icon: 'pi pi-info-circle',
         acceptButtonStyleClass:"p-button-danger p-button-text",
         rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptLabel: this.translate.instant('ACTIONS.YES'),
+        rejectLabel: this.translate.instant('ACTIONS.NO'),
         acceptIcon:"none",
         rejectIcon:"none",
 

@@ -12,11 +12,12 @@ import { NotificationService } from '../../../services/notification.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { DashboardData } from '../../../models/dashboard-data.model';
 import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'exy-add-client-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective],
+  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, NumbersOnlyDirective, TranslateModule],
   templateUrl: './add-client-dialog.component.html',
   styleUrl: './add-client-dialog.component.css'
 })
@@ -25,7 +26,7 @@ export class AddClientDialogComponent {
 
   public closeDialog = output<void>();
 
-  public options = signal<string[]>(['Active', 'Archived']);
+  public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
 
   public addClientForm: FormGroup = new FormGroup({
     name: new FormControl(''),
