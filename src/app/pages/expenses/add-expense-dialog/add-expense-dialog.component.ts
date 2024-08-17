@@ -1,5 +1,5 @@
 import { Component, inject, input, output, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
@@ -13,11 +13,12 @@ import { SpinnerService } from '../../../services/spinner.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ChartService } from '../../../services/chart.service';
+import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 
 @Component({
   selector: 'exy-add-expense-dialog',
   standalone: true,
-  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
+  imports: [CalendarModule, ReactiveFormsModule, DialogModule, InputTextModule, DropdownModule, InputGroupModule, InputGroupAddonModule, TranslateModule, NumbersOnlyDirective],
   templateUrl: './add-expense-dialog.component.html',
   styleUrl: './add-expense-dialog.component.css'
 })
@@ -36,11 +37,11 @@ export class AddExpenseDialogComponent {
   public typeOptions = signal<{label: string, value: string}[]>([{label: 'SUBSCRIPTION.ONE_TIME', value: 'One time'} , {label: 'SUBSCRIPTION.SUBSCRIPTION', value: 'Subscription'}]);
 
   public addExpenseForm: FormGroup = new FormGroup({
-    type: new FormControl(''),
-    company: new FormControl(''),
-    cost: new FormControl(''),
-    payment_date: new FormControl(''),
-    status: new FormControl(''),
+    type: new FormControl('', [Validators.required]),
+    company: new FormControl('', [Validators.required]),
+    cost: new FormControl('', [Validators.required]),
+    payment_date: new FormControl('', [Validators.required]),
+    status: new FormControl('', [Validators.required]),
   })
 
   public onSubmit(): void {

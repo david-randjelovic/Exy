@@ -50,6 +50,6 @@
 
     <div class="dialog-buttons">
         <p-button label="{{'ACTIONS.CANCEL' | translate}}" severity="secondary" (click)="close()"/>
-        <p-button type="submit" label="{{'ACTIONS.SAVE' | translate}}"/>
+        <p-button type="submit" label="{{'ACTIONS.SAVE' | translate}}" [disabled]="!editClientForm.valid"/>
     </div>
 </form>

@@ -1,5 +1,5 @@
 import { Component, inject, input, OnInit, output, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -31,12 +31,12 @@ export class EditClientDialogComponent implements OnInit {
   public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
 
   public editClientForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    company: new FormControl(''),
-    price: new FormControl(''),
-    yearly_maintenance: new FormControl(''),
-    payment_date: new FormControl(''),
-    status: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    company: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    yearly_maintenance: new FormControl('', [Validators.required]),
+    payment_date: new FormControl('', [Validators.required]),
+    status: new FormControl('', [Validators.required]),
   })
 
 
@@ -75,7 +75,7 @@ export class EditClientDialogComponent implements OnInit {
       company: clientData.company,
       price: clientData.price,
       yearly_maintenance: clientData.yearly_maintenance,
-      payment_date: clientData.payment_date,
+      payment_date: new Date(clientData.payment_date),
       status: clientData.status
     });
   }
