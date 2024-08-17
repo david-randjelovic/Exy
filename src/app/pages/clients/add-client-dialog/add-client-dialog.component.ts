@@ -13,6 +13,7 @@ import { DashboardService } from '../../../services/dashboard.service';
 import { DashboardData } from '../../../models/dashboard-data.model';
 import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 import { TranslateModule } from '@ngx-translate/core';
+import { ChartService } from '../../../services/chart.service';
 
 @Component({
   selector: 'exy-add-client-dialog',
@@ -22,6 +23,12 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './add-client-dialog.component.css'
 })
 export class AddClientDialogComponent {
+  private _clientService = inject(ClientService);
+  private _notificationService = inject(NotificationService);
+  private _dashboardService = inject(DashboardService);
+  private _chartService = inject(ChartService);
+
+
   public visible = input.required<boolean>();
 
   public closeDialog = output<void>();
@@ -37,9 +44,6 @@ export class AddClientDialogComponent {
     status: new FormControl(''),
   })
 
-  private _clientService = inject(ClientService);
-  private _notificationService = inject(NotificationService);
-  private _dashboardService = inject(DashboardService);
 
 
   public onSubmit(): void {
@@ -47,6 +51,7 @@ export class AddClientDialogComponent {
       next: response => {
           this._notificationService.showSnackbar('Success', 'Client added successfully!');
           this._dashboardService.dashboardData.set(response.dashboard_data!);
+          this._chartService.getChartData(response.dashboard_data);
           this._clientService.clients.update((clients) => [...clients, response.client]);
           this.addClientForm.reset();
           this.close();

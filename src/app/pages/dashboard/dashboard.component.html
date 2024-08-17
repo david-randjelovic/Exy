@@ -4,4 +4,5 @@
     <exy-card [cardIcon]="'chart-line'" [cardDescription]="translate.instant('DASHBOARD.PROFIT_THIS_YEAR')" [cardValue]="dashboardService.dashboardData()?.yearly_profit ?? 0" [cardPercentage]="55" [cardColor]="'orange'" [cardFinance]="true"></exy-card>
     <exy-card [cardIcon]="'user-plus'" [cardDescription]="translate.instant('DASHBOARD.NEW_CLIENTS')" [cardValue]="dashboardService.dashboardData()?.yearly_clients ?? 0" [cardPercentage]="55" [cardColor]="'green'" [cardFinance]="false"></exy-card>
 </div>
+<exy-chart></exy-chart>
 

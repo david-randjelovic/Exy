@@ -12,6 +12,7 @@ import { DashboardService } from '../../../services/dashboard.service';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 import { TranslateModule } from '@ngx-translate/core';
+import { ChartService } from '../../../services/chart.service';
 
 @Component({
   selector: 'exy-edit-client-dialog',
@@ -37,6 +38,7 @@ export class EditClientDialogComponent implements OnInit {
   private _clientService = inject(ClientService);
   private _notificationService = inject(NotificationService);
   private _dashboardService = inject(DashboardService);
+  private _chartService = inject(ChartService);
 
   ngOnInit(): void {
     this._populateForm(this.dialogConfig.data);
@@ -48,6 +50,7 @@ export class EditClientDialogComponent implements OnInit {
         this._notificationService.showSnackbar('Success', 'Client added successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data!);
         this._onEditClient(response.client);
+        this._chartService.getChartData(response.dashboard_data);
         this.editClientForm.reset();
         this._clientService.closeDialog.emit();
       },
@@ -76,7 +79,6 @@ export class EditClientDialogComponent implements OnInit {
       status: clientData.status
     });
   }
-
 
   public close() {
     this._clientService.closeDialog.emit();

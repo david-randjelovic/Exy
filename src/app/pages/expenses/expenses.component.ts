@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DashboardService } from '../../services/dashboard.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ChartService } from '../../services/chart.service';
 
 @Component({
   selector: 'app-expenses',
@@ -30,6 +31,7 @@ export class ExpensesComponent implements OnInit {
   private _notificationService = inject(NotificationService);
   private _confirmationService = inject(ConfirmationService);
   private _dashboardService = inject(DashboardService);
+  private _chartService = inject(ChartService);
 
   ngOnInit(): void {
     this._onGetClients(); 
@@ -56,7 +58,6 @@ export class ExpensesComponent implements OnInit {
   }
 
   public confirmDeletation(event: IClient) {
-    console.log('test');
     this._confirmationService.confirm({
         message: this.translate.instant('DELETE_CONFIMATION.DELETE_RECORD'),
         header: this.translate.instant('DELETE_CONFIMATION.DELETE_CONFIRMATION'),
@@ -79,6 +80,7 @@ export class ExpensesComponent implements OnInit {
       next: response => {
         this.expenseService.expenses.update((expenses) => expenses.filter((expense: IExpense) => expense.id !== id));
         this._dashboardService.dashboardData.set(response);
+        this._chartService.getChartData(response);
         this._notificationService.showSnackbar('Success', 'Client removed successfully!');
       },
       error: error => {

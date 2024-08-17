@@ -15,6 +15,7 @@ import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
 import { EditClientDialogComponent } from "./edit-client-dialog/edit-client-dialog.component";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ChartService } from '../../services/chart.service';
 
 @Component({
   selector: 'app-clients',
@@ -31,6 +32,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private _dialogService = inject(DialogService);
   private _dialogRef = inject(DynamicDialogRef);
   private _confirmationService = inject(ConfirmationService);
+  private _chartService = inject(ChartService);
 
   public translate = inject(TranslateService);
 
@@ -77,6 +79,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
       next: response => {
         this.clientService.clients.update((clients) => clients.filter((client) => client.id !== id));
         this._dashboardService.dashboardData.set(response);
+        this._chartService.getChartData(response);
         this._notificationService.showSnackbar('Success', 'Client removed successfully!');
       },
       error: error => {
