@@ -11,6 +11,7 @@ import { DashboardData } from "../models/dashboard-data.model";
 })
 export class ExpenseService {
     public expenses = signal<any>([]);
+    public expensesExist = signal<boolean>(true);
     private _http = inject(HttpClient);
 
     public getExpenses(): Observable<IExpense[]> {

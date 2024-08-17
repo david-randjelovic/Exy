@@ -23,6 +23,10 @@ import { ChartService } from '../../../services/chart.service';
 })
 export class EditClientDialogComponent implements OnInit {
   public dialogConfig = inject(DynamicDialogConfig);
+  private _clientService = inject(ClientService);
+  private _notificationService = inject(NotificationService);
+  private _dashboardService = inject(DashboardService);
+  private _chartService = inject(ChartService);
 
   public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
 
@@ -35,10 +39,6 @@ export class EditClientDialogComponent implements OnInit {
     status: new FormControl(''),
   })
 
-  private _clientService = inject(ClientService);
-  private _notificationService = inject(NotificationService);
-  private _dashboardService = inject(DashboardService);
-  private _chartService = inject(ChartService);
 
   ngOnInit(): void {
     this._populateForm(this.dialogConfig.data);

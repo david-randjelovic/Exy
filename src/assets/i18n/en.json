@@ -42,6 +42,7 @@
     },
     "EXPENSES": {
         "EXPENSES": "Expenses",
+        "INCOME": "Income",
         "TYPE": "Type",
         "COST": "Cost",
         "COMPANY": "Company",
@@ -80,5 +81,19 @@
     "SUBSCRIPTION": {
         "ONE_TIME": "One Time",
         "SUBSCRIPTION": "Subscription"
+    },
+    "MONTHS": {
+        "JANUARY": "January",
+        "FEBRUARY": "February",
+        "MARCH": "March",
+        "APRIL": "April",
+        "MAY": "May",
+        "JUNE": "June",
+        "JULY": "July",
+        "AUGUST": "August",
+        "SEPTEMBER": "September",
+        "OCTOBER": "October",
+        "NOVEMBER": "November",
+        "DECEMBER": "December"
     }
 }

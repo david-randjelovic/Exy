@@ -12,6 +12,7 @@ import { IExpense } from '../../../interfaces/expense.interface';
 import { SpinnerService } from '../../../services/spinner.service';
 import { DashboardService } from '../../../services/dashboard.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ChartService } from '../../../services/chart.service';
 
 @Component({
   selector: 'exy-add-expense-dialog',
@@ -24,6 +25,7 @@ export class AddExpenseDialogComponent {
   private _expenseService = inject(ExpenseService);
   private _notificationService = inject(NotificationService);
   private _dashboardService = inject(DashboardService);
+  private _chartService = inject(ChartService);
   
   public visible = input.required<boolean>();
 
@@ -46,6 +48,7 @@ export class AddExpenseDialogComponent {
       next: response => {
         this._notificationService.showSnackbar('Success', 'Client added successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data);
+        this._chartService.getChartData(response.dashboard_data);
         this.addExpense.emit(response);
         this.addExpenseForm.reset();
         this.close();

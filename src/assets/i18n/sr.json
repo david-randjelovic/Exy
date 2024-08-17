@@ -42,6 +42,7 @@
     },
     "EXPENSES": {
         "EXPENSES": "Troškovi",
+        "INCOME": "Prihod",
         "TYPE": "Tip",
         "COST": "Cena",
         "COMPANY": "Kompanija",
@@ -80,5 +81,19 @@
     "SUBSCRIPTION": {
         "ONE_TIME": "Jednokratno",
         "SUBSCRIPTION": "Pretplata"
+    },
+    "MONTHS": {
+        "JANUARY": "Januar",
+        "FEBRUARY": "Februar",
+        "MARCH": "Mart",
+        "APRIL": "April",
+        "MAY": "Maj",
+        "JUNE": "Jun",
+        "JULY": "Jul",
+        "AUGUST": "Avgust",
+        "SEPTEMBER": "Septembar",
+        "OCTOBER": "Oktobar",
+        "NOVEMBER": "Novembar",
+        "DECEMBER": "Decembar"
     }
 }

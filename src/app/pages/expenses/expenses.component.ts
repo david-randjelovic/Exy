@@ -46,10 +46,10 @@ export class ExpensesComponent implements OnInit {
   }
 
   private _onGetClients(): void {
-    if(this.expenseService.expenses().length > 0) return;
+    if(this.expenseService.expenses().length > 0 || !this.expenseService.expensesExist()) return;
     this.expenseService.getExpenses().subscribe({
       next: response => {
-        this.expenseService.expenses.set(response);
+        response.length > 0 ? this.expenseService.expenses.set(response) : this.expenseService.expensesExist.set(false);
       },
       error: error => {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');

@@ -12,6 +12,7 @@ import { IClientHTTP } from "../interfaces/client-http.interface";
 })
 export class ClientService {
     public clients = signal<IClient[]>([]);
+    public clientsExist = signal<boolean>(true);
     public closeDialog: EventEmitter<void> = new EventEmitter();
 
     private _http = inject(HttpClient);

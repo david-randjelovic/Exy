@@ -9,8 +9,11 @@
     color: #fff;
 }
 .sidebar-heading {
+    margin-left: -20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
     border-bottom: 1px solid #464d59;
@@ -20,4 +23,8 @@
     color: #c6c8cb;
     font-weight: 600;
     margin-left: 1.8rem;
+}
+.logo {
+    width: 45px;
+    height: 40px;
 }

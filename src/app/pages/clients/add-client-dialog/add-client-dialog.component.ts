@@ -1,19 +1,17 @@
 import { Component, inject, input, output, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
-import { IClient } from '../../../interfaces/client.interface';
-import { ClientService } from '../../../services/client.service';
-import { NotificationService } from '../../../services/notification.service';
-import { DashboardService } from '../../../services/dashboard.service';
-import { DashboardData } from '../../../models/dashboard-data.model';
-import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
-import { TranslateModule } from '@ngx-translate/core';
 import { ChartService } from '../../../services/chart.service';
+import { ClientService } from '../../../services/client.service';
+import { DashboardService } from '../../../services/dashboard.service';
+import { NotificationService } from '../../../services/notification.service';
+import { NumbersOnlyDirective } from '../../../shared/directives/numbers-only.directive';
 
 @Component({
   selector: 'exy-add-client-dialog',
@@ -36,12 +34,12 @@ export class AddClientDialogComponent {
   public statusOptions = signal<{label: string, value: string}[]>([{label: 'STATUS.ACTIVE', value: 'Active'} , {label: 'STATUS.ARCHIVED', value: 'Archived'}]);
 
   public addClientForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    company: new FormControl(''),
-    price: new FormControl(''),
-    yearly_maintenance: new FormControl(''),
-    payment_date: new FormControl(''),
-    status: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    company: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    yearly_maintenance: new FormControl('', [Validators.required]),
+    payment_date: new FormControl('', [Validators.required]),
+    status: new FormControl('', [Validators.required]),
   })
 
 

@@ -1,5 +1,8 @@
 <div class="container">
-        <p-breadcrumb class="max-w-full breadcrumb" [model]="items" [home]="home" />
+    <div class="time-container">
+        <i class="pi pi-clock"></i><span>Current Time: </span><span  class="primary-color">{{currentTime}}</span>
+    </div>
+
         <div class="header-buttons">
             <exy-language-dropdown></exy-language-dropdown>
         </div>

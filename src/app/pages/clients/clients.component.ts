@@ -89,10 +89,10 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   private _onGetClients(): void {
-    if(this.clientService.clients().length > 0) return;
+    if(this.clientService.clients().length > 0 || !this.clientService.clientsExist()) return;
     this.clientService.getClients().subscribe({
       next: response => {
-        this.clientService.clients.set(response);
+        response.length > 0 ? this.clientService.clients.set(response) : this.clientService.clientsExist.set(false);
       },
       error: error => {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
