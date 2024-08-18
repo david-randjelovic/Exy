@@ -23,7 +23,7 @@
         "TOTAL_PROFIT": "Total profit",
         "TOTAL_CLIENTS": "Total Clients",
         "PROFIT_THIS_YEAR": "Profit (This year)",
-        "NEW_CLIENTS": "New Clients(This year)",
+        "NEW_CLIENTS": "New Clients (This year)",
         "AUTH": "Auth"
     },
     "CLIENTS": {
@@ -49,7 +49,8 @@
         "PAYMENT_DATE": "Payment Date",
         "STATUS": "Status",
         "EXPENSE_DATA": "Expense data:",
-        "ENTER_EXPENSE_DATA": "Enter Expense data:"
+        "ENTER_EXPENSE_DATA": "Enter Expense data:",
+        "EDIT_EXPENSE": "Edit Expense"
     },
     "ACTIONS": {
         "ACTIONS": "Actions",
@@ -58,7 +59,7 @@
         "YES": "Yes",
         "NO": "No"
     },
-    "DELETE_CONFIMATION": {
+    "DELETE_CONFIRMATION": {
         "DELETE_CONFIRMATION": "Delete Confirmation",
         "DELETE_RECORD": "Do you want to delete this record?"
     },

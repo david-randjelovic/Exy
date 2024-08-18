@@ -47,7 +47,7 @@ export class EditClientDialogComponent implements OnInit {
   public onSubmit(): void {
     this._clientService.editClient(this.editClientForm, this._dialogConfig.data.id).subscribe({
       next: response => {
-        this._notificationService.showSnackbar('Success', 'Client added successfully!');
+        this._notificationService.showSnackbar('Success', 'Client edited successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data!);
         this._onEditClient(response.client);
         this._chartService.getChartData(response.dashboard_data);

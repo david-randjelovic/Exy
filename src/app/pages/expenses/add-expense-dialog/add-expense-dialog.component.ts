@@ -47,7 +47,7 @@ export class AddExpenseDialogComponent {
   public onSubmit(): void {
     this._expenseService.addExpense(this.addExpenseForm).subscribe({
       next: response => {
-        this._notificationService.showSnackbar('Success', 'Client added successfully!');
+        this._notificationService.showSnackbar('Success', 'Expense added successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data);
         this._chartService.getChartData(response.dashboard_data);
         this.addExpense.emit(response);

@@ -27,3 +27,11 @@
     cursor: pointer;
     color:#1D4ED8;
 }
+.action-tool-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+p-inputGroup {
+    width: 400px;
+}

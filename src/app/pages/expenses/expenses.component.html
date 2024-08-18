@@ -2,7 +2,15 @@
     <ng-template pTemplate="caption">
         <div class="table-heading">
             {{'EXPENSES.EXPENSES' | translate}}
-            <button pButton icon="pi pi-plus" (click)="showDialog()"> </button>
+            <div class="action-tool-container">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-search"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText id="search-input" autocomplete="off" placeholder="Search" (input)="searchExpenses($event)"/>
+                </p-inputGroup>
+                <button pButton icon="pi pi-plus" (click)="showDialog()"> </button>
+            </div>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -17,7 +25,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-expense>
         <tr>
-            <td>{{expense.type | truncate:30}}</td>
+            <td>{{ 'SUBSCRIPTION.' + (expense.type | transformType) | translate | truncate:30 }}</td>
             <td>{{expense.cost | dynamicCurrency}}</td>
             <td>{{expense.company  | truncate:30}}</td>
             <td>{{expense.payment_date | date : 'mediumDate'}}</td>

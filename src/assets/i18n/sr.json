@@ -49,7 +49,8 @@
         "PAYMENT_DATE": "Datum plaćanja",
         "STATUS": "Status",
         "EXPENSE_DATA": "Podaci o troškovima:",
-        "ENTER_EXPENSE_DATA": "Unesite podatke o troškovima:"
+        "ENTER_EXPENSE_DATA": "Unesite podatke o troškovima:",
+        "EDIT_EXPENSE": "Izmeni trošak"
     },
     "ACTIONS": {
         "ACTIONS": "Akcije",
@@ -58,7 +59,7 @@
         "YES": "Da",
         "NO": "Ne"
     },
-    "DELETE_CONFIMATION": {
+    "DELETE_CONFIRMATION": {
         "DELETE_CONFIRMATION": "Potvrda brisanja",
         "DELETE_RECORD": "Da li želite da obrišete ovaj zapis?"
     },

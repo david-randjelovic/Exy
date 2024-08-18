@@ -1,5 +1,5 @@
-import { EventEmitter, inject, Injectable, signal } from "@angular/core";
-import { Observable } from "rxjs";
+import { EventEmitter, inject, Injectable, Signal, signal } from "@angular/core";
+import { debounceTime, distinctUntilChanged, Observable } from "rxjs";
 import { IExpense } from "../interfaces/expense.interface";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../environments/environment";
@@ -31,5 +31,9 @@ export class ExpenseService {
     
     public onRemoveExpense(id: number): Observable<DashboardData> {
         return this._http.delete<DashboardData>(environment.apiUrl + `expenses/${id}`);
+    }
+
+    public searchExpenses(searchTerm: string): Observable<IExpense[]> {
+        return this._http.get<IExpense[]>(environment.apiUrl + `expenses/search?search=${searchTerm}`);
     }
 }

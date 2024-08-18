@@ -51,18 +51,20 @@ export class ClientsComponent implements OnInit, OnDestroy {
 
   public showEditDialog(client: IClient): void {
     this._dialogRef = this._dialogService.open(EditClientDialogComponent, {
-      header: 'Edit Client',
+      header: this.translate.instant("CLIENTS.EDIT_CLIENT"),
       data: client
     })
   }
 
   public confirmDeletation(event: IClient) {
     this._confirmationService.confirm({
-        message: 'Do you want to delete this record?',
-        header: 'Delete Confirmation',
+        message: this.translate.instant('DELETE_CONFIRMATION.DELETE_RECORD'),
+        header: this.translate.instant('DELETE_CONFIRMATION.DELETE_CONFIRMATION'),
         icon: 'pi pi-info-circle',
         acceptButtonStyleClass:"p-button-danger p-button-text",
         rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptLabel: this.translate.instant('ACTIONS.YES'),
+        rejectLabel: this.translate.instant('ACTIONS.NO'),
         acceptIcon:"none",
         rejectIcon:"none",
 

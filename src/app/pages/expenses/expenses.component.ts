@@ -1,33 +1,37 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { debounceTime, distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
+import { IClient } from '../../interfaces/client.interface';
 import { IExpense } from '../../interfaces/expense.interface';
+import { ChartService } from '../../services/chart.service';
+import { DashboardService } from '../../services/dashboard.service';
 import { ExpenseService } from '../../services/expense.service';
 import { NotificationService } from '../../services/notification.service';
+import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
+import { TransformTypePipe } from '../../shared/pipes/transform-type.pipe';
+import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { AddClientDialogComponent } from '../clients/add-client-dialog/add-client-dialog.component';
 import { AddExpenseDialogComponent } from "./add-expense-dialog/add-expense-dialog.component";
-import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
-import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
-import { IClient } from '../../interfaces/client.interface';
-import { ConfirmationService } from 'primeng/api';
-import { DashboardService } from '../../services/dashboard.service';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ChartService } from '../../services/chart.service';
-import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EditExpenseDialogComponent } from './edit-expense-dialog/edit-expense-dialog.component';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, ConfirmDialogModule, TranslateModule],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, TransformTypePipe, ConfirmDialogModule, TranslateModule, InputGroupModule, InputGroupAddonModule, InputTextModule],
   providers: [ConfirmationService, DynamicDialogRef, DialogService],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
 })
-export class ExpensesComponent implements OnInit {
+export class ExpensesComponent implements OnInit, OnDestroy {
   public expenseService = inject(ExpenseService);
   public translate = inject(TranslateService);
   private _dialogRef = inject(DynamicDialogRef);
@@ -38,11 +42,13 @@ export class ExpensesComponent implements OnInit {
   private _chartService = inject(ChartService);
 
   public visible = signal<boolean>(false);
+  private searchTerm$ = new Subject<string>();
   public onDestroy$: Subject<void> = new Subject();
 
   ngOnInit(): void {
     this._onGetClients();
     this._observeDialogClosing(); 
+    this._observeSearch();
   }
 
   public showDialog(): void {
@@ -67,15 +73,15 @@ export class ExpensesComponent implements OnInit {
 
   public showEditDialog(expense: IExpense): void {
     this._dialogRef = this._dialogService.open(EditExpenseDialogComponent, {
-      header: 'Edit Expense',
+      header: this.translate.instant('EXPENSES.EDIT_EXPENSE'),
       data: expense
     })
   }
 
   public confirmDeletation(event: IClient) {
     this._confirmationService.confirm({
-        message: this.translate.instant('DELETE_CONFIMATION.DELETE_RECORD'),
-        header: this.translate.instant('DELETE_CONFIMATION.DELETE_CONFIRMATION'),
+        message: this.translate.instant('DELETE_CONFIRMATION.DELETE_RECORD'),
+        header: this.translate.instant('DELETE_CONFIRMATION.DELETE_CONFIRMATION'),
         icon: 'pi pi-info-circle',
         acceptButtonStyleClass:"p-button-danger p-button-text",
         rejectButtonStyleClass:"p-button-text p-button-text",
@@ -90,6 +96,11 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
+  public searchExpenses(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    this.searchTerm$.next(searchTerm);
+  }
+
   private _observeDialogClosing(): void {
     this.expenseService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
       this._dialogRef.close();
@@ -102,11 +113,37 @@ export class ExpensesComponent implements OnInit {
         this.expenseService.expenses.update((expenses) => expenses.filter((expense: IExpense) => expense.id !== id));
         this._dashboardService.dashboardData.set(response);
         this._chartService.getChartData(response);
-        this._notificationService.showSnackbar('Success', 'Client removed successfully!');
+        this._notificationService.showSnackbar('Success', 'Expense removed successfully!');
       },
       error: error => {
         this._notificationService.showSnackbar('Error', 'Oops something went wrong!');
       }
     })
   }
+
+  private _observeSearch(): void {
+    this.searchTerm$
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((searchTerm) => 
+          this.expenseService.searchExpenses(searchTerm)
+        ),
+        takeUntil(this.onDestroy$)
+      )
+      .subscribe({
+        next: (expenses: IExpense[]) => {
+          this.expenseService.expenses.set(expenses);
+        },
+        error: () => {
+          this._notificationService.showSnackbar('Error', 'Oops something went wrong while searching!');
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+  
 }

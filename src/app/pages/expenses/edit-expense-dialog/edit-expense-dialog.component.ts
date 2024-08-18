@@ -46,7 +46,7 @@ export class EditExpenseDialogComponent implements OnInit {
   public onSubmit(): void {
     this._expenseService.editExpense(this.editExpenseForm, this._dialogConfig.data.id).subscribe({
       next: response => {
-        this._notificationService.showSnackbar('Success', 'Client added successfully!');
+        this._notificationService.showSnackbar('Success', 'Expense edited successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data!);
         this._onEditClient(response.expense);
         this._chartService.getChartData(response.dashboard_data);
