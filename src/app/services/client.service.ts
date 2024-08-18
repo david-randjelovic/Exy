@@ -32,4 +32,8 @@ export class ClientService {
     public onRemoveClient(id: number): Observable<DashboardData> {
         return this._http.delete<DashboardData>(environment.apiUrl + `clients/${id}`);
     }
+    
+    public searchClients(searchTerm: string): Observable<IClient[]> {
+        return this._http.get<IClient[]>(environment.apiUrl + `clients/search?search=${searchTerm}`);
+    }
 }

@@ -5,9 +5,6 @@ import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
 import { IClient } from '../../interfaces/client.interface';
@@ -22,11 +19,12 @@ import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { AddClientDialogComponent } from '../clients/add-client-dialog/add-client-dialog.component';
 import { AddExpenseDialogComponent } from "./add-expense-dialog/add-expense-dialog.component";
 import { EditExpenseDialogComponent } from './edit-expense-dialog/edit-expense-dialog.component';
+import { SearchComponent } from "../../shared/components/search/search.component";
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, TransformTypePipe, ConfirmDialogModule, TranslateModule, InputGroupModule, InputGroupAddonModule, InputTextModule],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, TransformTypePipe, ConfirmDialogModule, TranslateModule, SearchComponent],
   providers: [ConfirmationService, DynamicDialogRef, DialogService],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
@@ -42,13 +40,11 @@ export class ExpensesComponent implements OnInit, OnDestroy {
   private _chartService = inject(ChartService);
 
   public visible = signal<boolean>(false);
-  private searchTerm$ = new Subject<string>();
   public onDestroy$: Subject<void> = new Subject();
 
   ngOnInit(): void {
     this._onGetClients();
-    this._observeDialogClosing(); 
-    this._observeSearch();
+    this._observeDialogClosing();
   }
 
   public showDialog(): void {
@@ -96,17 +92,6 @@ export class ExpensesComponent implements OnInit, OnDestroy {
     });
   }
 
-  public searchExpenses(event: Event): void {
-    const searchTerm = (event.target as HTMLInputElement).value;
-    this.searchTerm$.next(searchTerm);
-  }
-
-  private _observeDialogClosing(): void {
-    this.expenseService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
-      this._dialogRef.close();
-    })
-  }
-
   private _onRemoveExpense(id: number): void {
     this.expenseService.onRemoveExpense(id).subscribe({
       next: response => {
@@ -120,25 +105,11 @@ export class ExpensesComponent implements OnInit, OnDestroy {
       }
     })
   }
-
-  private _observeSearch(): void {
-    this.searchTerm$
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap((searchTerm) => 
-          this.expenseService.searchExpenses(searchTerm)
-        ),
-        takeUntil(this.onDestroy$)
-      )
-      .subscribe({
-        next: (expenses: IExpense[]) => {
-          this.expenseService.expenses.set(expenses);
-        },
-        error: () => {
-          this._notificationService.showSnackbar('Error', 'Oops something went wrong while searching!');
-        }
-      });
+  
+  private _observeDialogClosing(): void {
+    this.expenseService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
+      this._dialogRef.close();
+    })
   }
 
   ngOnDestroy(): void {

@@ -1,12 +1,17 @@
 import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { Subject, takeUntil } from 'rxjs';
 import { IClient } from '../../interfaces/client.interface';
+import { ChartService } from '../../services/chart.service';
 import { ClientService } from '../../services/client.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { NotificationService } from '../../services/notification.service';
@@ -14,19 +19,19 @@ import { DynamicCurrencyPipe } from '../../shared/pipes/currency.pipe';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { AddClientDialogComponent } from "./add-client-dialog/add-client-dialog.component";
 import { EditClientDialogComponent } from "./edit-client-dialog/edit-client-dialog.component";
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ChartService } from '../../services/chart.service';
+import { SearchComponent } from "../../shared/components/search/search.component";
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule, ConfirmDialogModule, DynamicCurrencyPipe, TruncatePipe, DecimalPipe, TranslateModule],
+  imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, DatePipe, EditClientDialogComponent, DynamicDialogModule, ConfirmDialogModule, DynamicCurrencyPipe, TruncatePipe, DecimalPipe, TranslateModule, InputGroupModule, InputGroupAddonModule, InputTextModule, SearchComponent],
   providers: [DialogService, DynamicDialogRef, ConfirmationService],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
 })
 export class ClientsComponent implements OnInit, OnDestroy {
   public clientService = inject(ClientService);
+  public translate = inject(TranslateService);
   private _notificationService = inject(NotificationService);
   private _dashboardService = inject(DashboardService);
   private _dialogService = inject(DialogService);
@@ -34,10 +39,9 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private _confirmationService = inject(ConfirmationService);
   private _chartService = inject(ChartService);
 
-  public translate = inject(TranslateService);
-
   public addDialogVisible = signal<boolean>(false);
   public editDialogVisible = signal<boolean>(false);
+
   public onDestroy$: Subject<void> = new Subject();
 
   ngOnInit(): void {

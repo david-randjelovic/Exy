@@ -57,7 +57,8 @@
         "CANCEL": "Cancel",
         "SAVE": "Save",
         "YES": "Yes",
-        "NO": "No"
+        "NO": "No",
+        "SEARCH": "Search"
     },
     "DELETE_CONFIRMATION": {
         "DELETE_CONFIRMATION": "Delete Confirmation",

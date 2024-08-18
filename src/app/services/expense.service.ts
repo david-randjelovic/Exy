@@ -13,7 +13,7 @@ import { IExpenseHTTP } from "../interfaces/expense-http.interface";
 export class ExpenseService {
     private _http = inject(HttpClient);
 
-    public expenses = signal<any>([]);
+    public expenses = signal<IExpense[]>([]);
     public expensesExist = signal<boolean>(true);
     public closeDialog: EventEmitter<void> = new EventEmitter();
 

@@ -3,12 +3,7 @@
         <div class="table-heading">
             {{'EXPENSES.EXPENSES' | translate}}
             <div class="action-tool-container">
-                <p-inputGroup>
-                    <p-inputGroupAddon>
-                        <i class="pi pi-search"></i>
-                    </p-inputGroupAddon>
-                    <input pInputText id="search-input" autocomplete="off" placeholder="Search" (input)="searchExpenses($event)"/>
-                </p-inputGroup>
+                <exy-search [searchPage]="'expenses'"></exy-search>
                 <button pButton icon="pi pi-plus" (click)="showDialog()"> </button>
             </div>
         </div>

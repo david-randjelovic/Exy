@@ -57,7 +57,8 @@
         "CANCEL": "Otkaži",
         "SAVE": "Sačuvaj",
         "YES": "Da",
-        "NO": "Ne"
+        "NO": "Ne",
+        "SEARCH": "Pretraga"
     },
     "DELETE_CONFIRMATION": {
         "DELETE_CONFIRMATION": "Potvrda brisanja",

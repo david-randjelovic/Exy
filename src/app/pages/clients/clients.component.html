@@ -2,7 +2,10 @@
     <ng-template pTemplate="caption">
         <div class="table-heading">
             {{"CLIENTS.CLIENTS" | translate}}
-            <button pButton icon="pi pi-plus" (click)="showAddDialog()"> </button>
+            <div class="action-tool-container">
+                <exy-search [searchPage]="'Clients'"></exy-search>
+                <button pButton icon="pi pi-plus" (click)="showAddDialog()"></button>
+            </div>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
