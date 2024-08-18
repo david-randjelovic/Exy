@@ -38,7 +38,6 @@ export class ClientsComponent implements OnInit, OnDestroy {
 
   public addDialogVisible = signal<boolean>(false);
   public editDialogVisible = signal<boolean>(false);
-  public selectedClientForEditing = signal<IClient | null>(null);
   public onDestroy$: Subject<void> = new Subject();
 
   ngOnInit(): void {
@@ -51,7 +50,6 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   public showEditDialog(client: IClient): void {
-    this.selectedClientForEditing.set(client);
     this._dialogRef = this._dialogService.open(EditClientDialogComponent, {
       header: 'Edit Client',
       data: client

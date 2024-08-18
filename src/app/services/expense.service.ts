@@ -1,18 +1,21 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { EventEmitter, inject, Injectable, signal } from "@angular/core";
 import { Observable } from "rxjs";
 import { IExpense } from "../interfaces/expense.interface";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { FormGroup } from "@angular/forms";
 import { DashboardData } from "../models/dashboard-data.model";
+import { IExpenseHTTP } from "../interfaces/expense-http.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ExpenseService {
+    private _http = inject(HttpClient);
+
     public expenses = signal<any>([]);
     public expensesExist = signal<boolean>(true);
-    private _http = inject(HttpClient);
+    public closeDialog: EventEmitter<void> = new EventEmitter();
 
     public getExpenses(): Observable<IExpense[]> {
         return this._http.get<IExpense[]>(environment.apiUrl + 'expenses');
@@ -22,6 +25,9 @@ export class ExpenseService {
         return this._http.post<IExpense>(environment.apiUrl + 'expenses', form.value);
     }
 
+    public editExpense(form: FormGroup, id: number): Observable<IExpenseHTTP> {
+        return this._http.put<IExpenseHTTP>(environment.apiUrl + `expenses/${id}`, form.value);
+    }
     
     public onRemoveExpense(id: number): Observable<DashboardData> {
         return this._http.delete<DashboardData>(environment.apiUrl + `expenses/${id}`);

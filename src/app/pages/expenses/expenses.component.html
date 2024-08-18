@@ -24,7 +24,7 @@
             <td [ngClass]="{'green': expense.status === 'Active', 'red': expense.status === 'Archived'}">{{translate.instant('STATUS.' + expense.status.toUpperCase())}}</td>
             <td>
                 <div class="action-icons">
-                    <!-- <i class="pi pi-pen-to-square action-icon" (click)="showEditDialog(client)"></i> -->
+                    <i class="pi pi-pen-to-square action-icon" (click)="showEditDialog(expense)"></i>
                     <i class="pi pi-trash action-icon" (click)="confirmDeletation(expense)"></i>
                 </div>
             </td>

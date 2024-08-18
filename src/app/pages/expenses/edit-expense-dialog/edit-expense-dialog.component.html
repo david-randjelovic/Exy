@@ -1,0 +1,57 @@
+
+<form class="dialog-container" [formGroup]="editExpenseForm" (ngSubmit)="onSubmit()">
+    <div class="logo-container">
+        <img src="assets/logo.png" alt="logo" class="logo">
+    </div>
+    <span>{{"EXPENSES.ENTER_EXPENSE_DATA" | translate}}</span>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <p-dropdown [options]="typeOptions()" formControlName="type"  placeholder="{{'EXPENSES.TYPE' | translate}}">
+             <ng-template pTemplate="item" let-item>
+                {{item.label | translate}}
+                </ng-template>
+                <ng-template let-selectedItem pTemplate="selectedItem">
+                {{selectedItem.label | translate}}
+            </ng-template>
+        </p-dropdown>
+    </p-inputGroup>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-building"></i>
+        </p-inputGroupAddon>
+        <input pInputText id="client-company" autocomplete="off" placeholder="{{'EXPENSES.COMPANY' | translate}}" formControlName="company" />
+    </p-inputGroup>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-dollar"></i>
+        </p-inputGroupAddon>
+        <input pInputText id="client-price" autocomplete="off" placeholder="{{'EXPENSES.COST' | translate}}" formControlName="cost" exyNumbersOnly/>
+    </p-inputGroup>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-calendar-clock"></i>
+        </p-inputGroupAddon>
+        <p-calendar formControlName="payment_date" placeholder="{{'EXPENSES.PAYMENT_DATE' | translate}}" />
+    </p-inputGroup>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-address-book"></i>
+        </p-inputGroupAddon>
+        <p-dropdown [options]="statusOptions()" formControlName="status"  placeholder="{{'EXPENSES.STATUS' | translate}}">
+            <ng-template pTemplate="item" let-item>
+                {{item.label | translate}}
+                </ng-template>
+                <ng-template let-selectedItem pTemplate="selectedItem">
+                {{selectedItem.label | translate}}
+            </ng-template>
+        </p-dropdown>
+    </p-inputGroup>
+
+
+    <div class="dialog-buttons">
+        <p-button label="{{'ACTIONS.CANCEL' | translate}}" severity="secondary" (click)="close()"/>
+        <p-button type="submit" label="{{'ACTIONS.SAVE' | translate}}" [disabled]="!editExpenseForm.valid"/>
+    </div>
+</form>

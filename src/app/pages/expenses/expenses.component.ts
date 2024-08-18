@@ -15,26 +15,34 @@ import { DashboardService } from '../../services/dashboard.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ChartService } from '../../services/chart.service';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EditExpenseDialogComponent } from './edit-expense-dialog/edit-expense-dialog.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
   imports: [TableModule, NgClass, AddClientDialogComponent, ButtonModule, AddExpenseDialogComponent, DatePipe, DynamicCurrencyPipe, TruncatePipe, ConfirmDialogModule, TranslateModule],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, DynamicDialogRef, DialogService],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
 })
 export class ExpensesComponent implements OnInit {
-  public visible = signal<boolean>(false);
   public expenseService = inject(ExpenseService);
   public translate = inject(TranslateService);
+  private _dialogRef = inject(DynamicDialogRef);
+  private _dialogService = inject(DialogService);
   private _notificationService = inject(NotificationService);
   private _confirmationService = inject(ConfirmationService);
   private _dashboardService = inject(DashboardService);
   private _chartService = inject(ChartService);
 
+  public visible = signal<boolean>(false);
+  public onDestroy$: Subject<void> = new Subject();
+
   ngOnInit(): void {
-    this._onGetClients(); 
+    this._onGetClients();
+    this._observeDialogClosing(); 
   }
 
   public showDialog(): void {
@@ -57,6 +65,13 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
+  public showEditDialog(expense: IExpense): void {
+    this._dialogRef = this._dialogService.open(EditExpenseDialogComponent, {
+      header: 'Edit Expense',
+      data: expense
+    })
+  }
+
   public confirmDeletation(event: IClient) {
     this._confirmationService.confirm({
         message: this.translate.instant('DELETE_CONFIMATION.DELETE_RECORD'),
@@ -75,6 +90,12 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
+  private _observeDialogClosing(): void {
+    this.expenseService.closeDialog.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
+      this._dialogRef.close();
+    })
+  }
+
   private _onRemoveExpense(id: number): void {
     this.expenseService.onRemoveExpense(id).subscribe({
       next: response => {
@@ -88,6 +109,4 @@ export class ExpensesComponent implements OnInit {
       }
     })
   }
-
-
 }

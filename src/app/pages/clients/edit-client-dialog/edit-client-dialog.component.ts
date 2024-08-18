@@ -22,7 +22,7 @@ import { ChartService } from '../../../services/chart.service';
   styleUrl: './edit-client-dialog.component.css'
 })
 export class EditClientDialogComponent implements OnInit {
-  public dialogConfig = inject(DynamicDialogConfig);
+  private _dialogConfig = inject(DynamicDialogConfig);
   private _clientService = inject(ClientService);
   private _notificationService = inject(NotificationService);
   private _dashboardService = inject(DashboardService);
@@ -41,11 +41,11 @@ export class EditClientDialogComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this._populateForm(this.dialogConfig.data);
+    this._populateForm(this._dialogConfig.data);
   }
 
   public onSubmit(): void {
-    this._clientService.editClient(this.editClientForm, this.dialogConfig.data.id).subscribe({
+    this._clientService.editClient(this.editClientForm, this._dialogConfig.data.id).subscribe({
       next: response => {
         this._notificationService.showSnackbar('Success', 'Client added successfully!');
         this._dashboardService.dashboardData.set(response.dashboard_data!);
