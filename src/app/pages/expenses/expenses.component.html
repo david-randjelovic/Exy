@@ -20,10 +20,10 @@
     </ng-template>
     <ng-template pTemplate="body" let-expense>
         <tr>
-            <td>{{ 'SUBSCRIPTION.' + (expense.type | transformType) | translate | truncate:30 }}</td>
+            <td>{{'SUBSCRIPTION.' + (expense.type | transformType) | translate | truncate:30 }}</td>
             <td>{{expense.cost | dynamicCurrency}}</td>
             <td>{{expense.company  | truncate:30}}</td>
-            <td>{{expense.payment_date | date : 'mediumDate'}}</td>
+            <td>{{expense.payment_date | date: 'yyyy-MM-dd'}}</td>
             <td [ngClass]="{'green': expense.status === 'Active', 'red': expense.status === 'Archived'}">{{translate.instant('STATUS.' + expense.status.toUpperCase())}}</td>
             <td>
                 <div class="action-icons">
