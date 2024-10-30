@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { IUser } from './interfaces/user.interface';
@@ -19,4 +19,5 @@ import { LanguageService } from './services/language.service';
 })
 export class AppComponent {
   public router = inject(Router);
+  public screenWidth = window.innerWidth;
 }

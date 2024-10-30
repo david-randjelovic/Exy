@@ -27,3 +27,9 @@
     justify-content: center;
     gap: 1rem;
 }
+@media (max-width: 420px) {
+    p-table {
+        display: block;
+        width: 387px;
+    }
+}

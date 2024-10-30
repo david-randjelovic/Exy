@@ -3,35 +3,88 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .green {
     color: #22c55e;
 }
+
 .red {
     color: red;
 }
+
 .dialog-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 .dialog-buttons {
     display: flex;
-    justify-content: space-between;   
+    justify-content: space-between;
 }
+
 .action-icons {
     display: flex;
     gap: 1rem;
     color: #3B82F6;
 }
+
 .action-icon:hover {
     cursor: pointer;
-    color:#1D4ED8;
+    color: #1D4ED8;
 }
+
 .action-tool-container {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
+
 p-inputGroup {
     width: 400px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media (max-width: 420px) {
+    p-table {
+        display: block;
+        width: 387px;
+    }
+    .hide-on-small {
+        display: none;
+    }
+    
+    .container {
+        font-size: 0.9rem;
+    }
+
+    .table-heading {
+        font-size: 1rem;
+    }
+
+    .action-tool-container button {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+    .container .p-datatable-tbody > tr > td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .container .p-datatable-tbody > tr {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0;
+    }
+
+    .action-icons {
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
 }

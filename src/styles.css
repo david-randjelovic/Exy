@@ -16,3 +16,10 @@ a:hover {color: var(--primary-color); text-decoration: underline;}
 .p-dropdown {width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
 canvas {height:600px !important;}
 .p-dialog-content {overflow: unset;}
+.no-scroll {
+    overflow: hidden;
+}
+app-account-settings {
+    display: flex;
+    justify-content: center;
+}

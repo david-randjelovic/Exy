@@ -1,9 +1,38 @@
-<div class="container">
-    <div class="time-container">
-        <i class="pi pi-clock"></i><span>Current Time: </span><span  class="primary-color">{{currentTime}}</span>
-    </div>
-
-        <div class="header-buttons">
-            <exy-language-dropdown></exy-language-dropdown>
+@if(screenWidth() > 991) {
+    <div class="container">
+        <div class="time-container">
+            <i class="pi pi-clock"></i><span>Current Time: </span><span  class="primary-color">{{currentTime}}</span>
         </div>
-</div>
+    
+            <div class="header-buttons">
+                <exy-language-dropdown></exy-language-dropdown>
+            </div>
+    </div>
+} @else {
+    <nav class="navbar">
+        <img class="navbar-brand" src="assets/logo.png" alt="logo" />
+      
+        <div class="right-side">
+          <div class="header-buttons">
+            <exy-language-dropdown></exy-language-dropdown>
+          </div>
+          <div class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Overlay Menu -->
+      <div class="overlay-menu" [class.active]="isMenuOpen()">
+        <ul class="menu"> Test
+          <li><a routerLink="/dashboard" (click)="toggleMenu()">{{'DASHBOARD.DASHBOARD' | translate}}</a></li>
+          <li><a routerLink="/clients" (click)="toggleMenu()">{{'CLIENTS.CLIENTS' | translate}}</a></li>
+          <li><a routerLink="/expenses" (click)="toggleMenu()">{{'EXPENSES.EXPENSES' | translate}}</a></li>
+          <hr>
+          <li><a routerLink="/account-settings" (click)="toggleMenu()">{{'ACCOUNT_SETTINGS.ACCOUNT_SETTINGS' | translate}}</a></li>
+          <li><a routerLink="/auth/login" (click)="toggleMenu()">{{'FORM.SIGN_OUT' | translate}}</a></li>
+        </ul>
+      </div>
+}

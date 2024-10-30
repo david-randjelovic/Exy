@@ -1,11 +1,19 @@
 @if (!router.url.includes('login') && !router.url.includes('register')) {
-    <div class="content-container">
-        <exy-sidebar></exy-sidebar>
+    @if(screenWidth > 991) { 
+        <div class="content-container">
+            <exy-sidebar></exy-sidebar>
+            <div class="content">
+                <exy-header></exy-header>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    } @else {
         <div class="content">
             <exy-header></exy-header>
             <router-outlet></router-outlet>
         </div>
-    </div>
+    }
+
 } @else {
     <router-outlet></router-outlet>
 }

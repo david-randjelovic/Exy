@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, signal } from '@angular/core';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -14,6 +14,11 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  public screenWidth = signal<number>(window.innerWidth);
+  public isMenuOpen = signal<boolean>(false);
+
+  constructor(private _renderer: Renderer2) {}
+
   public items = [
     { label: 'Electronics' }, 
     { label: 'Computer' }, 
@@ -29,6 +34,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._updateTime();
     this.timer = setInterval(() => this._updateTime(), 1000);
+  }
+
+  public toggleMenu(): void {
+    this.isMenuOpen.update((prevState) => !prevState);
+    if (this.isMenuOpen()) {
+      this._renderer.addClass(document.body, 'no-scroll');
+    } else {
+      this._renderer.removeClass(document.body, 'no-scroll');
+    }
   }
 
   private _updateTime() {
