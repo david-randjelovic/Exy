@@ -13,6 +13,6 @@ export class CurrencyService {
   }
 
   public setCurrencySymbol(response: IUser): void {
-    this.currencySymbolSubject.next(response.currency.slice(-1));
+    this.currencySymbolSubject.next(response.currency?.slice(-1) ?? '$');
   }
 }

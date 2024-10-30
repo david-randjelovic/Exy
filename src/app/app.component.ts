@@ -17,24 +17,6 @@ import { LanguageService } from './services/language.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public router = inject(Router);
-  private _userService = inject(UserService);
-  private _notificationService = inject(NotificationService);
-  private _currencyService = inject(CurrencyService);
-  private _languageService = inject(LanguageService);
-
-  ngOnInit(): void {
-    this._userService.getUserData().subscribe({
-      next: response => {
-        this._userService.userData = response;
-        this._userService.patchAccountSettings(response);
-        this._languageService.setPreferredLanguage(response);
-        this._currencyService.setCurrencySymbol(response);
-      },
-      error: error => {
-        this._notificationService.showSnackbar('Error', 'Oops something went wrong with fetching users data!');
-      }
-    })
-  }
 }

@@ -14,6 +14,5 @@ export const routes: Routes = [
     {path: 'clients', component: ClientsComponent, canActivate: [authGuard]},
     {path: 'expenses', component: ExpensesComponent, canActivate: [authGuard]},
     {path: 'account-settings', component: AccountSettingsComponent, canActivate: [authGuard]},
-    {path: '', redirectTo: 'auth/register', pathMatch: 'full'},
-    {path: '**', redirectTo: 'auth/register', pathMatch: 'full'}
+    {path: '**', redirectTo: 'auth/login', pathMatch: 'full'}
 ];
