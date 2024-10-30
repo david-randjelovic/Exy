@@ -23,3 +23,8 @@ app-account-settings {
     display: flex;
     justify-content: center;
 }
+@media (max-width: 420px) {
+    .p-datatable {
+        margin-left: 1rem !important;
+    }
+}
