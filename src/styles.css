@@ -24,6 +24,10 @@ app-account-settings {
     justify-content: center;
 }
 @media (max-width: 420px) {
+    .table-heading {
+        flex-direction: column;
+        gap: 1rem;
+    }
     .p-datatable {
         margin-left: 1rem !important;
     }
