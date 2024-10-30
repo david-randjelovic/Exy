@@ -1,0 +1,101 @@
+{
+    "SIGN_UP_PAGE": {
+        "WELCOME_MESSAGE": "Welcome to Exy!",
+        "WELCOME_PARAGRAPH": "Save your money and effortlessly manage your expenses with Exy. Our intuitive app helps you track spending, set savings goals, and stay on top of your budget. Take control of your financial future with Exy today!",
+        "WELCOME_PARAGRAPH_PHONE": "Take control of your financial future with Exy today!",
+        "SIGN_IN_MESSAGE": "Already have an account?"
+    },
+    "SIGN_IN_PAGE": {
+        "WELCOME_BACK_MESSAGE": "Welcome Back!",
+        "SIGN_UP_MESSAGE": "Don't have an account?",
+        "SIGN_IN": "Sign in"
+    },
+    "FORM": {
+        "USERNAME": "Username",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm password",
+        "SIGN_UP": "Sign up",
+        "SIGN_OUT": "Sign Out"
+    },
+    "DASHBOARD": {
+        "DASHBOARD": "Dashboard",
+        "TOTAL_PROFIT": "Total profit",
+        "TOTAL_CLIENTS": "Total Clients",
+        "PROFIT_THIS_YEAR": "Profit (This year)",
+        "NEW_CLIENTS": "New Clients (This year)",
+        "AUTH": "Auth"
+    },
+    "CLIENTS": {
+        "CLIENTS": "Clients",
+        "NAME": "Name",
+        "COMPANY": "Company",
+        "PRICE": "Price",
+        "YEARLY_MAINTENANCE": "Yearly maintenance",
+        "PAYMENT_DATE": "Payment Date",
+        "STATUS": "Status",
+        "ACTIONS": "Actions",
+        "ADD_CLIENT": "Add Client",
+        "EDIT_CLIENT": "Edit Client",
+        "CLIENTS_DATA": "Client data:",
+        "ENTER_CLIENTS_DATA": "Enter Client data:"
+    },
+    "EXPENSES": {
+        "EXPENSES": "Expenses",
+        "INCOME": "Income",
+        "TYPE": "Type",
+        "COST": "Cost",
+        "COMPANY": "Company",
+        "PAYMENT_DATE": "Payment Date",
+        "STATUS": "Status",
+        "EXPENSE_DATA": "Expense data:",
+        "ENTER_EXPENSE_DATA": "Enter Expense data:",
+        "EDIT_EXPENSE": "Edit Expense"
+    },
+    "ACTIONS": {
+        "ACTIONS": "Actions",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "YES": "Yes",
+        "NO": "No",
+        "SEARCH": "Search"
+    },
+    "DELETE_CONFIRMATION": {
+        "DELETE_CONFIRMATION": "Delete Confirmation",
+        "DELETE_RECORD": "Do you want to delete this record?"
+    },
+    "ACCOUNT_SETTINGS": {
+        "ACCOUNT_SETTINGS": "Account Settings",
+        "NAME": "Name",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Password",
+        "PREFERRED_LANGUAGE": "Preferred Language",
+        "CURRENCY": "Currency",
+        "ENGLISH": "English",
+        "SERBIAN": "Serbian",
+        "DOLLAR": "Dollar - $",
+        "EURO": "Euro - €"
+    },
+    "STATUS": {
+        "ARCHIVED": "Archived",
+        "ACTIVE": "Active"
+    },
+    "SUBSCRIPTION": {
+        "ONE_TIME": "One Time",
+        "SUBSCRIPTION": "Subscription"
+    },
+    "MONTHS": {
+        "JANUARY": "January",
+        "FEBRUARY": "February",
+        "MARCH": "March",
+        "APRIL": "April",
+        "MAY": "May",
+        "JUNE": "June",
+        "JULY": "July",
+        "AUGUST": "August",
+        "SEPTEMBER": "September",
+        "OCTOBER": "October",
+        "NOVEMBER": "November",
+        "DECEMBER": "December"
+    }
+}
