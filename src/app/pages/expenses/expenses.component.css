@@ -88,3 +88,10 @@ p-inputGroup {
         gap: 0.5rem;
     }
 }
+
+@media (max-width: 420px) {
+    p-table {
+        display: block;
+        width: 366px;
+    }
+}
